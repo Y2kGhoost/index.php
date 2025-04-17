@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom_ens = htmlspecialchars($_POST["nom"]);
@@ -13,6 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $smtm = $pdo->prepare($query);
         $smtm->execute([$nom_ens, $prenom_ens, $email]);
+
+        $id_enseignant = $pdo->lastInsertId();
+
+        $_SESSION['id_enseignant'] = $id_enseignant;
+        $_SESSION['nom'] = $nom_ens;
+        $_SESSION['prenom'] = $prenom_ens;
+        $_SESSION['email'] = $email;
 
         $pdo = null;
         $smtm = null;

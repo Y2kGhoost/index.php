@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/MainMenu.css">
     <link rel="stylesheet" href="../css/secMenu.css">
     <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/form.css">
 </head>
 <body>
     <nav id="mainMenu">
@@ -19,8 +20,14 @@
     <nav id="secMenu">
         <a href="./ajoutense.php">Ajouter Enseignant</a>
         <a href="./modifense.php">Modifier Enseignant</a>
-        <a href="./suprimense.php">Supprimer Enseignant</a>
+        <a href="./suprimense.php" style="background-color: #575757;">Supprimer Enseignant</a>
     </nav>
 
+    <form action="../includes/Enseignants/suprimense.inc.php" method="post" id="form">
+        <label for="id_enseignant" id="lab">ID Enseignant</label><br><br>
+        <input type="number" name="id_ens" id="inp" placeholder="ID Enseignant"><br><br><br>
+
+        <input type="submit" value="Supprimer" id="sub">
+    </form>
 </body>
 </html>

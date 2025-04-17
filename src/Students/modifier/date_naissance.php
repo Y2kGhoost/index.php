@@ -50,7 +50,10 @@ unset($_SESSION['date_naissance']);
         <input type="submit" value="Modifier" id="sub">
 
         <?php if ($id_etudiant && $date_naissance): ?>
-            <p id="lab">Date Modifier: <?php echo htmlspecialchars('ID: ' . $id_etudiant . ' | Date de naissance: ' . $date_naissance); ?></p>
+            <p id="lab" style="color: green; font-weight: bold;">
+                ✔️ Étudiant modifié avec succès<br>
+                ID: <?= htmlspecialchars($id_etudiant) ?> | Date De Naissance: <?= htmlspecialchars($date_naissance) ?>
+            </p>
         <?php endif; ?>
     </form>
 </body>

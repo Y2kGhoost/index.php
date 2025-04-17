@@ -4,7 +4,7 @@ session_start();
 $id_etudiant = isset($_SESSION['id_etudiant']) ? $_SESSION['id_etudiant'] : null;
 $nom_filiere = isset($_SESSION['nom_filiere']) ? $_SESSION['nom_filiere'] : null;
 
-unset($_SESSION['id_filiere']);
+unset($_SESSION['id_etudiant']);
 unset($_SESSION['nom_filiere']);
 ?>
 
@@ -51,7 +51,10 @@ unset($_SESSION['nom_filiere']);
         <input type="submit" value="Modifier" id="sub">
 
         <?php if ($id_etudiant && $nom_filiere): ?>
-            <p id="lab">Filiere Modifier: <?php echo htmlspecialchars('ID: ' . $id_etudiant . " | Filiere: " . $nom_filiere); ?></p>
+            <p id="lab" style="color: green; font-weight: bold;">
+                ✔️ Étudiant modifié avec succès<br>
+                ID: <?= htmlspecialchars($id_etudiant) ?> | Filière: <?= htmlspecialchars($nom_filiere) ?>
+            </p>
         <?php endif; ?>
     </form>
 </body>

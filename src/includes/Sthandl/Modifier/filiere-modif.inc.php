@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
         require_once "../../dbh.inc.php";
 
-        $stmt_filiere = $pdo->prepare("SELECT id_filiere, nom_filiere FROM filiere WHERE nom_filiere = ?");
+        $stmt_filiere = $pdo->prepare("SELECT id_filiere, nom_filiere FROM filieres WHERE nom_filiere = ?");
         $stmt_filiere->execute([$filiere_name]);
         $filiere = $stmt_filiere->fetch(PDO::FETCH_ASSOC);
 

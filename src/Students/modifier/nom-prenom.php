@@ -3,6 +3,10 @@ session_start();
 $id_etudiant = isset($_SESSION['id_etudiant']) ? $_SESSION['id_etudiant'] : null;
 $nom = isset($_SESSION['nom']) ? $_SESSION['nom'] : null;
 $prenom = isset($_SESSION['prenom']) ? $_SESSION['prenom'] : null;
+
+unset($_SESSION['id_etudiant']);
+unset($_SESSION['nom']);
+unset($_SESSION['prenom']);
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +54,10 @@ $prenom = isset($_SESSION['prenom']) ? $_SESSION['prenom'] : null;
         <input type="submit" value="Modifier" name="modif" id="sub">
 
         <?php if ($nom && $prenom): ?>
-            <p id="lab">Etudiant modifier: <?php echo htmlspecialchars('ID: ' . $id_etudiant . ' | Nom: ' . $nom . ' | Prenom: ' . $prenom); ?></p>
+            <p id="lab" style="color: green; font-weight: bold;">
+                ✔️ Étudiant modifié avec succès<br>
+                ID: <?= htmlspecialchars($id_etudiant) ?> | Nom: <?= htmlspecialchars($nom) ?> | Prenom: <?= htmlspecialchars($prenom) ?>
+            </p>
         <?php endif; ?>
     </form>
 </body>

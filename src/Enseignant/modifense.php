@@ -18,7 +18,7 @@
     </nav>
     <nav id="secMenu">
         <a href="./ajoutense.php">Ajouter Enseignant</a>
-        <a href="./modifense.php">Modifier Enseignant</a>
+        <a href="./modifense.php" style="background-color: #575757;">Modifier Enseignant</a>
         <a href="./suprimense.php">Supprimer Enseignant</a>
     </nav>
 
