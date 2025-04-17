@@ -1,0 +1,17 @@
+#mainMenu{
+    background-color: #333;
+    overflow: hidden;
+}
+
+#mainMenu a {
+    float: left;
+    display: block;
+    color: #fff;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#mainMenu a:hover {
+    background-color: #575757;
+}
