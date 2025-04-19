@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $id_ens = filter_input(INPUT_POST, 'id_enseignant', FILTER_VALIDATE_INT);
+    $id_ens = filter_input(INPUT_POST, 'id_ens', FILTER_VALIDATE_INT);
     
     if (!$id_ens) {
         die("ID invalide.");
@@ -15,8 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt_nom_prenom = $pdo->prepare("SELECT nom, prenom FROM enseignants WHERE id_enseignant = ?;");
         $stmt_nom_prenom->execute([$id_ens]);
         $nom_prenom = $stmt_nom_prenom->fetch(PDO::FETCH_ASSOC);
+
         if (!$nom_prenom) {
-            error_log("Aucun enseignat trouve avec cet ID.");
+            $_SESSION['error'] = "Aucun enseignant trouve avec cet ID";
             header("Location: ../../Enseignant/suprimense.php");
             exit;
         }
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: ../../Enseignant/suprimense.php");
         exit;
     } catch (PDOException $e) {
-        error_log("Error de base de donnees: " . $e->getMessage());
+        $_SESSION['error'] = "Aucun enseignant trouve avec cet ID";
         header("Location: ../../Enseignant/suprimense.php");
         exit;
     }

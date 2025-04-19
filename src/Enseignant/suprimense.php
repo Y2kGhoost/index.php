@@ -1,3 +1,14 @@
+<?php
+session_start();
+$nom = isset($_SESSION['nom']) ? $_SESSION['nom'] : null;
+$prenom = isset($_SESSION['prenom']) ? $_SESSION['prenom'] : null;
+$error = isset($_SESSION['error']) ? $_SESSION['error'] : null;
+
+unset($_SESSION['nom']);
+unset($_SESSION['prenom']);
+unset($_SESSION['error']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +39,19 @@
         <input type="number" name="id_ens" id="inp" placeholder="ID Enseignant"><br><br><br>
 
         <input type="submit" value="Supprimer" id="sub">
+        <?php if($nom && $prenom): ?>
+            <p id="lab" style="color: green; font-weight: bold">
+                ✔️ Enseignant Suprimmer avec succès<br>
+                Nom: <?= htmlspecialchars($nom) ?> | Prenom: <?= htmlspecialchars($prenom) ?>
+            </p>
+        <?php endif; ?>
+
+        <?php if ($error): ?>
+            <p id="lab" style="color: red; font-weight: bold">
+                ❌ Enseignant Suprimmer avec echec <br>
+                ID Introvable
+            </p>
+        <?php endif; ?>
     </form>
 </body>
 </html>

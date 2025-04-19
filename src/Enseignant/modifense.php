@@ -21,6 +21,9 @@
         <a href="./modifense.php" style="background-color: #575757;">Modifier Enseignant</a>
         <a href="./suprimense.php">Supprimer Enseignant</a>
     </nav>
-
+    <nav id="secMenu">
+        <a href="./Modifier/Nom_Prenom.php">Nom et Prenom</a>
+        <a href="./Modifier/Email.php">Email</a>
+    </nav>
 </body>
 </html>
