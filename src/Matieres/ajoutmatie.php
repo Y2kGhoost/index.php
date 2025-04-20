@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+$nom_filiere = isset($_SESSION['nom_filiere']) ? $_SESSION['nom_filiere'] : null;
+$nom_matiere = isset($_SESSION['nom_matiere']) ? $_SESSION['nom_matiere'] : null;
+$nom_ens = isset($_SESSION['nom_enseignant']) ? $_SESSION['nom_enseignant'] : null;
+
+unset($_SESSION['nom_filiere']);
+unset($_SESSION['nom_matiere']);
+unset($_SESSION['nom_enseignant']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,21 +31,28 @@
     </nav>
     <nav id="secMenu">
         <a href="./ajoutmatie.php" style="background-color: #575757;">Ajouter Matière</a>
-        <a href="./modfst.php">Modifier Matière</a>
-        <a href="./suppst.php">Supprimer Matière</a>
+        <a href="./modifmatie.php">Modifier Matière</a>
+        <a href="./suprimematie.php">Supprimer Matière</a>
     </nav>
 
-    <form action="../includes/Matieres/matiehandl.inc.php" method="post" id="form" name="insert">
+    <form action="../includes/Matieres/Ajout_matie.inc.php" method="post" id="form" name="insert">
         <label for="name" id="lab">Nom</label><br><br>
         <input type="text" id="inp" name="nom_matiere" placeholder="Le Nom..." require><br><br><br>
         
-        <label for="nom_fil" id="lab">Nom de la filiere</label><br><br>
-        <input type="text" id="inp" name="nom_filiere" placeholder="Nom de la filiere..." require><br><br><br>
+        <label for="nom_fil" id="lab">ID Filiere</label><br><br>
+        <input type="number" id="inp" name="id_fil" placeholder="ID filiere..." require><br><br><br>
 
-        <label for="nom_ens" id="lab">Nom de l'enseignant</label><br><br>
-        <input type="text" id="inp" name="nom_enseignant" placeholder="Nom de l'enseignant..." require><br><br><br>
+        <label for="nom_ens" id="lab">ID Enseignant</label><br><br>
+        <input type="number" id="inp" name="id_ens" placeholder="ID Enseignant..." require><br><br><br>
 
         <input type="submit" id="sub" name="subm" value="Valider">
+
+        <?php if ($nom_ens && $nom_filiere && $nom_matiere): ?>
+            <p id="lab" style="color: green; font-weight: bold">
+                ✔️ Matiere Ajouter avec succes <br>
+                Nom Matiere: <?= htmlspecialchars($nom_matiere) ?> | Nom Filiere: <?= htmlspecialchars($nom_filiere) ?> | Nom Enseignant: <?= htmlspecialchars($nom_ens) ?>
+            </p>
+        <?php endif; ?>
     </form>
 </body>
 </html>

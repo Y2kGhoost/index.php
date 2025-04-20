@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/MainMenu.css">
     <link rel="stylesheet" href="../css/secMenu.css">
     <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/form.css">
 </head>
 <body>
     <nav id="mainMenu">
@@ -18,8 +19,13 @@
     </nav>
     <nav id="secMenu">
         <a href="./ajoutmatie.php">Ajouter Matière</a>
-        <a href="./modifmatie.php">Modifier Matière</a>
+        <a href="./modifmatie.php" style="background-color: #575757;">Modifier Matière</a>
         <a href="./suprimematie.php">Supprimer Matière</a>
+    </nav>
+    <nav id="secMenu">
+        <a href="./Modifier/nom_mat.php">Nom Matiere</a>
+        <a href="./Modifier/fil_mat.php">Filiere Matiere</a>
+        <a href="./Modifier/ens_mat.php">Enseignant Matiere</a>
     </nav>
 </body>
 </html>
