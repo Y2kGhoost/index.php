@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_etudiant) {
         $_SESSION['error'] = "ID invalide.";
-        header("Location: ../../Students/suppst.php");
+        header("Location: ../../HTML/Students/suppst.php");
         exit;
     }
 
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (!$nom_prenom) {
             $_SESSION['error'] = "Aucun étudiant trouvé avec cet ID.";
-            header("Location: ../../Students/suppst.php");
+            header("Location: ../../HTML/Students/suppst.php");
             exit;
         }
 
@@ -33,14 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $smtm = null;
         $pdo = null;
 
-        header("Location: ../../Students/suppst.php");
+        header("Location: ../../HTML/Students/suppst.php");
         exit;
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Erreur de base de données : " . $e->getMessage();
-        header("Location: ../../Students/suppst.php");
-        exit;
+        die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../Students/suppst.php");
+    header("Location: ../../HTML/Students/suppst.php");
     exit;
 }

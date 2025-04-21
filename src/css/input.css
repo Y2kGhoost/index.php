@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@layer components {
+    #mainMenu {
+      @apply bg-[#333] overflow-hidden;
+    }
+    #mainMenu a {
+      @apply float-left block text-[#fff] text-center py-[14px] px-[20px] no-underline transition-colors duration-200;
+    }
+    #mainMenu a:hover {
+      @apply bg-[#575757];
+    }
+  
+    #secMenu {
+      @apply bg-[#333] overflow-hidden mb-[50px];
+    }
+    #secMenu a {
+      @apply block text-[#fff] py-[14px] px-[20px] no-underline text-center ;
+    }
+    #secMenu a:hover {
+      @apply bg-[#575757];
+    }
+
+    /* Formulaire */
+    #form {
+      @apply text-center bg-[hsl(0,0%,51%)] p-5 rounded-[20px] border-2 border-solid shadow-[2px_1px_5px_black];
+    }
+
+    #form #lab {
+      @apply text-[25px] text-[hsl(253,36%,20%)] font-semibold;
+    }
+
+    #form #inp,
+    #form #date {
+      @apply p-2.5 w-[700px] text-[20px] border-3 border-solid border-[hsl(252,21%,37%)] rounded-[30px] text-center;
+    }
+
+    #form #sub {
+      @apply p-2.5 w-[200px] text-white bg-[hsl(120,13%,43%)] border-2 border-solid border-[hsl(252,21%,37%)] transition-colors duration-200;
+    }
+
+    #form #sub:hover {
+      @apply bg-[hsl(120,27%,63%)] cursor-pointer;
+    }
+}
+  

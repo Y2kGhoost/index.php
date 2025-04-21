@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_ens) {
         $_SESSION['error'] = "ID invalid.";
-        header("Location: ../../../Enseignant/Modifier/Email.php");
+        header("Location: ../../../HTML/Enseignant/Modifier/Email.php");
         exit;
     }
 
@@ -21,13 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['id_enseignant'] = $id_ens;
         $_SESSION['email'] = $email;
 
-        header("Location: ../../../Enseignant/Modifier/Email.php");
+        header("Location: ../../../HTML/Enseignant/Modifier/Email.php");
         exit;
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Error" . $e->getMessage();
-        header("Location: ../../../Enseignant/Modifier/Email.php");
-        exit;
+        die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../../Enseignant/Modifier/Email.php");
+    header("Location: ../../../HTML/Enseignant/Modifier/Email.php");
 }

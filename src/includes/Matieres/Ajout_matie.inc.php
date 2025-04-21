@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!$id_enseignant || !$id_filiere) {
         $_SESSION['error'] = "ID invalide";
-        header("Location: ../../Matieres/ajoutmatie.php");
+        header("Location: ../../HTML/Matieres/ajoutmatie.php");
         exit;
     }
 
@@ -32,12 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['nom_filiere'] = $nom_filiere;
         $_SESSION['nom_enseignant'] = $nom_enseignant;
 
-        header("Location: ../../Matieres/ajoutmatie.php");
+        header("Location: ../../HTML/Matieres/ajoutmatie.php");
         exit;
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../Matieres/ajoutmatie.php");
+    header("Location: ../../HTML/Matieres/ajoutmatie.php");
     exit();
 }

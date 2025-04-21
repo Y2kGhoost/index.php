@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_mat || !$newEnsId) {
         $_SESSION['error'] = "ID invalide.";
-        header("Location: ../../../Matieres/Modifier/ens_mat.php");
+        header("Location: ../../../HTML/Matieres/Modifier/ens_mat.php");
         exit;
     }
 
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (!$ens) {
             $_SESSION['error'] = "Enseignant introuvable.";
-            header("Location: ../../../Matieres/Modifier/ens_mat.php");
+            header("Location: ../../../HTML/Matieres/Modifier/ens_mat.php");
             exit;
         }
 
@@ -34,13 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['newEns'] = $newEnsId;
         $_SESSION['newEnsName'] = $ens['nom'] . " " . $ens['prenom'];
 
-        header("Location: ../../../Matieres/Modifier/ens_mat.php");
+        header("Location: ../../../HTML/Matieres/Modifier/ens_mat.php");
         exit;
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Error: " . $e->getMessage();
-        header("Location: ../../../Matieres/Modifier/ens_mat.php");
+        die("Query failed: " . $e->getMessage());
+        header("Location: ../../../HTML/Matieres/Modifier/ens_mat.php");
         exit;
     }
 } else {
-    header("Location: ../../../Matieres/Modifier/ens_mat.php");
+    header("Location: ../../../HTML/Matieres/Modifier/ens_mat.php");
 }

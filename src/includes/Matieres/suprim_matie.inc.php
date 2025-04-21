@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_mat) {
         $_SESSION['error'] = "ID invalide.";
-        header("Location: ../../Matieres/suprimematie.php");
+        header("Location: ../../HTML/Matieres/suprimematie.php");
         exit;
     }
 
@@ -30,14 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $_SESSION['deleted_matiere'] = $nom_mat;
 
-        header("Location: ../../Matieres/suprimematie.php");
+        header("Location: ../../HTML/Matieres/suprimematie.php");
         exit;
 
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Erreur : " . $e->getMessage();
-        header("Location: ../../Matieres/suprimematie.php");
+        die("Error: " . $e->getMessage());
+        header("Location: ../../HTML/Matieres/suprimematie.php");
         exit;
     }
 } else {
-    header("Location: ../../Matieres/suprimematie.php");
+    header("Location: ../../HTML/Matieres/suprimematie.php");
 }

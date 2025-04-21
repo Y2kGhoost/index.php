@@ -23,12 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['error'] = "Filière non trouvée.";
         }
 
-        header("Location: ../../Students/listst.php");
+        header("Location: ../../HTML/Students/listst.php");
         exit;
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../Students/listst.php");
+    header("Location: ../../HTML/Students/listst.php");
     exit;
 }

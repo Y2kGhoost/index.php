@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pdo = null;
             $stmt = null;
 
-            header("Location: ../../Students/cherchst.php");
+            header("Location: ../../HTML/Students/cherchst.php");
             die();
         } else {
             die("Student not found");
@@ -51,5 +51,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../Students/cherchst.php");
+    header("Location: ../../HTML/Students/cherchst.php");
 }

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_mat || !$newFilId) {
         $_SESSION['error'] = "ID ou Filière invalide.";
-        header("Location: ../../../Matieres/Modifier/fil_mat.php");
+        header("Location: ../../../HTML/Matieres/Modifier/fil_mat.php");
         exit;
     }
 
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (!$filiere) {
             $_SESSION['error'] = "Filière introuvable.";
-            header("Location: ../../../Matieres/Modifier/fil_mat.php");
+            header("Location: ../../../HTML/Matieres/Modifier/fil_mat.php");
             exit;
         }
 
@@ -31,13 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['newFil'] = $filiere['nom_filiere'];
         $_SESSION['newFilId'] = $newFilId;
 
-        header("Location: ../../../Matieres/Modifier/fil_mat.php");
+        header("Location: ../../../HTML/Matieres/Modifier/fil_mat.php");
         exit;
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Erreur : " . $e->getMessage();
-        header("Location: ../../../Matieres/Modifier/fil_mat.php");
+        die("Query failed: " . $e->getMessage());
+        header("Location: ../../../HTML/Matieres/Modifier/fil_mat.php");
         exit;
     }
 } else {
-    header("Location: ../../../Matieres/Modifier/fil_mat.php");
+    header("Location: ../../../HTML/Matieres/Modifier/fil_mat.php");
 }

@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = null;
             $stmt_filiere = null;
 
-            header("Location: ../../Students/ajoutst.php");
+            header("Location: ../../HTML/Students/ajoutst.php");
             exit();
         } else {
             die("Filière not found.");
@@ -41,6 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../Students/ajoutst.php");
+    header("Location: ../../HTML/Students/ajoutst.php");
 }
 

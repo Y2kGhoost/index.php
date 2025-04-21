@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_ens) {
         $_SESSION['error'] = "ID invalide.";
-        header("Location: ../../../Enseignant/Modifier/Nom_Prenom.php");
+        header("Location: ../../../HTML/Enseignant/Modifier/Nom_Prenom.php");
         exit;
     }
 
@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['nom'] = $nom;
         $_SESSION['prenom'] = $prenom;
 
-        header("Location: ../../../Enseignant/Modifier/Nom_Prenom.php");
+        header("Location: ../../../HTML/Enseignant/Modifier/Nom_Prenom.php");
         exit;
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Error" . $e->getMessage();
+        die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../../Enseignant/Modifier/Nom_Prenom.php");
+    header("Location: ../../../HTML/Enseignant/Modifier/Nom_Prenom.php");
 }

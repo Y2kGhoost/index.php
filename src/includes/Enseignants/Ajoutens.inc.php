@@ -25,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo = null;
         $smtm = null;
 
-        header("Location: ../../Enseignant/ajoutense.php");
+        header("Location: ../../HTML/Enseignant/ajoutense.php");
         die();
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../Enseignant/ajoutense.php");
+    header("Location: ../../HTML/Enseignant/ajoutense.php");
 }
 

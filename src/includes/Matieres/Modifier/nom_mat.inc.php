@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_mat) {
         $_SESSION['error'] = "ID invalide.";
-        header("Location: ../../../Matieres/Modifier/nom_mat.php");
+        header("Location: ../../../HTML/Matieres/Modifier/nom_mat.php");
         exit;
     }
 
@@ -20,13 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['id_mat'] = $id_mat;
         $_SESSION['newNom'] = $newNom;
 
-        header("Location: ../../../Matieres/Modifier/nom_mat.php");
+        header("Location: ../../../HTML/Matieres/Modifier/nom_mat.php");
         exit;
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Error: " . $e->getMessage();
-        header("Location: ../../../Matieres/Modifier/nom_mat.php");
+        die("Query failed: " . $e->getMessage());
+        header("Location: ../../../HTML/Matieres/Modifier/nom_mat.php");
         exit;
     }
 } else {
-    header("Location: ../../../Matieres/Modifier/nom_mat.php");
+    header("Location: ../../../HTML/Matieres/Modifier/nom_mat.php");
 }

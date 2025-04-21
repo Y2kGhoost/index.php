@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$id_etudiant) {
         die("ID invalide");
-        header("Location: ../../../Students/modifier/date_naissance.php");
+        header("Location: ../../../HTML/Students/modifier/date_naissance.php");
         exit;
     }
 
@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['id_etudiant'] = $id_etudiant;
         $_SESSION['date_naissance'] = $date_naissance;
 
-        header("Location: ../../../Students/modifier/date_naissance.php");
+        header("Location: ../../../HTML/Students/modifier/date_naissance.php");
         exit;
     } catch (PDOException $e) {
-        error_log("Error de base de donnees: " . $e->getMessage());
+        die("Query failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../../../Students/modifier/date_naissance.php");
+    header("Location: ../../../HTML/Students/modifier/date_naissance.php");
     exit;
 }
