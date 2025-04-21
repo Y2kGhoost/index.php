@@ -15,10 +15,7 @@ unset($_SESSION['error']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enseignants</title>
-    <link rel="stylesheet" href="../../../css/MainMenu.css">
-    <link rel="stylesheet" href="../../../css/secMenu.css">
-    <link rel="stylesheet" href="../../../css/body.css">
-    <link rel="stylesheet" href="../../../css/form.css">
+    <link rel="stylesheet" href="../../../css/output.css">
 </head>
 <body>
     <nav id="mainMenu">

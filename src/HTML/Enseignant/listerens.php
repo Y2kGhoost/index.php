@@ -11,11 +11,7 @@ unset($_SESSION['ens']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enseignants</title>
-    <link rel="stylesheet" href="../../css/MainMenu.css">
-    <link rel="stylesheet" href="../../css/secMenu.css">
-    <link rel="stylesheet" href="../../css/body.css">
-    <link rel="stylesheet" href="../../css/form.css">
-    <link rel="stylesheet" href="../../css/table.css">
+    <link rel="stylesheet" href="../../css/output.css">
 </head>
 <body>
     <nav id="mainMenu">
@@ -34,29 +30,25 @@ unset($_SESSION['ens']);
     </nav>
 
     <form action="../../includes/Enseignants/lister_ens.inc.php" method="post" id="form">
-        <input type="submit" value="Lister" id="sub"><br><br>
-    </form><br><br>
+        <input type="submit" value="Lister" id="sub">
+    </form><br><br><br>
     <?php if (count($enss) > 0): ?>
         <center>
             <table id="table">
-                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                </tr>
+                <?php foreach($enss as $ens): ?>
                     <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Email</th>
+                        <td><?php echo htmlspecialchars($ens['id_enseignant']) ?></th>
+                        <td><?php echo htmlspecialchars($ens['nom']) ?></th>
+                        <td><?php echo htmlspecialchars($ens['prenom']) ?></th>
+                        <td><?php echo htmlspecialchars($ens['email']) ?></th>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($enss as $ens): ?>
-                        <tr>
-                            <th><?php echo htmlspecialchars($ens['id_enseignant']) ?></th>
-                            <th><?php echo htmlspecialchars($ens['nom']) ?></th>
-                            <th><?php echo htmlspecialchars($ens['prenom']) ?></th>
-                            <th><?php echo htmlspecialchars($ens['email']) ?></th>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
+                <?php endforeach; ?>
             </table>
         </center>
     <?php endif; ?>

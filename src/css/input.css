@@ -25,22 +25,38 @@
     #form {
       @apply text-center bg-[hsl(0,0%,51%)] p-5 rounded-[20px] border-2 border-solid shadow-[2px_1px_5px_black];
     }
-
     #form #lab {
       @apply text-[25px] text-[hsl(253,36%,20%)] font-semibold;
     }
-
     #form #inp,
     #form #date {
-      @apply p-2.5 w-[700px] text-[20px] border-3 border-solid border-[hsl(252,21%,37%)] rounded-[30px] text-center;
+      @apply p-2.5 w-[700px] text-[20px] border-3 border-solid border-[hsl(252,21%,37%)] rounded-[30px] text-center focus:bg-white focus:ring-2 focus:ring-blue-500 transition-colors duration-300;
     }
-
     #form #sub {
       @apply p-2.5 w-[200px] text-white bg-[hsl(120,13%,43%)] border-2 border-solid border-[hsl(252,21%,37%)] transition-colors duration-200;
     }
-
     #form #sub:hover {
       @apply bg-[hsl(120,27%,63%)] cursor-pointer;
+    }
+
+    /* Table */
+    #table {
+      @apply border-collapse w-[900px];
+    }
+    #table th {
+      @apply border border-[#dddddd] text-white text-left p-3 bg-blue-500;
+    }
+    #table td {
+      @apply border border-[#dddddd] text-left p-3 bg-gray-100;
+    }
+    #table tr:nth-child(even) {
+      @apply bg-gray-200;
+    }
+    #table tr:hover {
+      @apply bg-blue-50;
+    }
+    #table tr:nth-child(even) {
+      @apply bg-gray-200;
     }
 }
   
