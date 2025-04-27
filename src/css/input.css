@@ -1,62 +1,111 @@
 @import "tailwindcss";
+@tailwind utilities;
 
-@layer components {
-    #mainMenu {
-      @apply bg-[#333] overflow-hidden;
-    }
-    #mainMenu a {
-      @apply float-left block text-[#fff] text-center py-[14px] px-[20px] no-underline transition-colors duration-200;
-    }
-    #mainMenu a:hover {
-      @apply bg-[#575757];
-    }
-  
-    #secMenu {
-      @apply bg-[#333] overflow-hidden mb-[50px];
-    }
-    #secMenu a {
-      @apply block text-[#fff] py-[14px] px-[20px] no-underline text-center ;
-    }
-    #secMenu a:hover {
-      @apply bg-[#575757];
-    }
-
-    /* Formulaire */
-    #form {
-      @apply text-center bg-[hsl(0,0%,51%)] p-5 rounded-[20px] border-2 border-solid shadow-[2px_1px_5px_black];
-    }
-    #form #lab {
-      @apply text-[25px] text-[hsl(253,36%,20%)] font-semibold;
-    }
-    #form #inp,
-    #form #date {
-      @apply p-2.5 w-[700px] text-[20px] border-3 border-solid border-[hsl(252,21%,37%)] rounded-[30px] text-center focus:bg-white focus:ring-2 focus:ring-blue-500 transition-colors duration-300;
-    }
-    #form #sub {
-      @apply p-2.5 w-[200px] text-white bg-[hsl(120,13%,43%)] border-2 border-solid border-[hsl(252,21%,37%)] transition-colors duration-200;
-    }
-    #form #sub:hover {
-      @apply bg-[hsl(120,27%,63%)] cursor-pointer;
-    }
-
-    /* Table */
-    #table {
-      @apply border-collapse w-[900px];
-    }
-    #table th {
-      @apply border border-[#dddddd] text-white text-left p-3 bg-blue-500;
-    }
-    #table td {
-      @apply border border-[#dddddd] text-left p-3 bg-gray-100;
-    }
-    #table tr:nth-child(even) {
-      @apply bg-gray-200;
-    }
-    #table tr:hover {
-      @apply bg-blue-50;
-    }
-    #table tr:nth-child(even) {
-      @apply bg-gray-200;
-    }
+.dark {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
 }
-  
+
+.dark body {
+    background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+    color: rgba(243, 244, 246, var(--tw-text-opacity));
+}
+
+.dark .bg-white {
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+}
+
+.dark .text-gray-800 {
+    color: rgba(243, 244, 246, var(--tw-text-opacity));
+}
+
+.dark .border-gray-300 {
+    border-color: rgba(55, 65, 81, var(--tw-border-opacity));
+}
+
+.dark .bg-gray-700 {
+    background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+}
+
+.dark .bg-gray-800 {
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+}
+
+.dark .hover\:bg-gray-600:hover {
+    background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
+}
+
+.dark .bg-green-50 {
+    background-color: rgba(6, 78, 59, var(--tw-bg-opacity));
+}
+
+.dark .bg-red-50 {
+    background-color: rgba(127, 29, 29, var(--tw-bg-opacity));
+}
+
+.dark .text-green-500 {
+    color: rgba(16, 185, 129, var(--tw-text-opacity));
+}
+
+.dark .text-red-500 {
+    color: rgba(239, 68, 68, var(--tw-text-opacity));
+}
+
+.dark .text-green-700 {
+    color: rgba(110, 231, 183, var(--tw-text-opacity));
+}
+
+.dark .text-red-700 {
+    color: rgba(252, 165, 165, var(--tw-text-opacity));
+}
+
+/* Table Styles for Light and Dark Mode */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f7fafc; /* Light mode header background */
+    color: #4a5568; /* Light mode header text color */
+}
+
+td {
+    background-color: #ffffff; /* Light mode table row background */
+    color: #4a5568; /* Light mode table row text color */
+}
+
+tr:nth-child(even) {
+    background-color: #f9fafb; /* Light mode alternate row background */
+}
+
+/* Dark Mode Table Styles */
+.dark table {
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity)); /* Dark mode background */
+    color: rgba(243, 244, 246, var(--tw-text-opacity)); /* Dark mode text color */
+}
+
+.dark th {
+    background-color: rgba(55, 65, 81, var(--tw-bg-opacity)); /* Dark mode header background */
+    color: rgba(243, 244, 246, var(--tw-text-opacity)); /* Dark mode header text color */
+}
+
+.dark td {
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity)); /* Dark mode row background */
+    color: rgba(243, 244, 246, var(--tw-text-opacity)); /* Dark mode row text color */
+}
+
+.dark tr:nth-child(even) {
+    background-color: rgba(55, 65, 81, var(--tw-bg-opacity)); /* Dark mode alternate row background */
+}
+
+/* Hover Effects */
+th:hover, td:hover {
+    background-color: rgba(75, 85, 99, var(--tw-bg-opacity)); /* Hover effect on table header and data cells */
+}

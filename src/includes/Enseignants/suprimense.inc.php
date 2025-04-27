@@ -4,11 +4,13 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id_ens = filter_input(INPUT_POST, 'id_ens', FILTER_VALIDATE_INT);
     
+    // Check if ID is invalid
     if (!$id_ens) {
-        die("ID invalide.");
+        $_SESSION['error'] = "ID invalide.";
         header("Location: ../../HTML/Enseignant/suprimense.php");
         exit;
     }
+
     try {
         require_once "../dbh.inc.php";
 
@@ -18,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (!$nom_prenom) {
             $_SESSION['error'] = "Aucun enseignant trouve avec cet ID";
-            header("Location: ../../../Enseignant/suprimense.php");
+            header("Location: ../../HTML/Enseignant/suprimense.php");
             exit;
         }
 
@@ -28,14 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['nom'] = $nom_prenom['nom'];
         $_SESSION['prenom'] = $nom_prenom['prenom'];
 
-        header("Location: ../../../Enseignant/suprimense.php");
+        // Redirect after deletion
+        header("Location: ../../HTML/Enseignant/suprimense.php");
         exit;
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Query failed: " . $e->getMessage();
+        header("Location: ../../HTML/Enseignant/suprimense.php");
+        exit;
     }
 
 } else {
     header("Location: ../../HTML/Enseignant/suprimense.php");
     exit;
 }
-

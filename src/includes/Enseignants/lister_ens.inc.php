@@ -13,8 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: ../../HTML/Enseignant/listerens.php");
         exit;
     } catch (PDOException $e) {
-        die ("Error: " . $e->getMessage());
+        $_SESSION['error'] = "Error: " . $e->getMessage();
+        header("Location: ../../HTML/Enseignant/listerens.php");
+        exit;
     }
 } else {
     header("Location: ../../HTML/Enseignant/listerens.php");
+    exit;
 }

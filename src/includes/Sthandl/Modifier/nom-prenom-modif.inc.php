@@ -1,31 +1,40 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $id_etudiant = filter_input(INPUT_POST, 'id_etudiant', FILTER_VALIDATE_INT);
-    $nom = htmlspecialchars($_POST['newNom']);
-    $prenom = htmlspecialchars($_POST['newPrenom']);
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    header("Location: ../../../HTML/Students/modifier/nom-prenom.php");
+    exit;
+}
 
-    if (!$id_etudiant) {
-        die("ID invalide");
-        header("Location: ../../../HTML/Students/modifier/nom-prenom.php");
-        exit;
-    }
+$id_etudiant = filter_input(INPUT_POST, 'id_etudiant', FILTER_VALIDATE_INT);
+$nom = trim(htmlspecialchars($_POST['newNom'] ?? ''));
+$prenom = trim(htmlspecialchars($_POST['newPrenom'] ?? ''));
 
-    try {
-        require_once "../../dbh.inc.php";
+if (!$id_etudiant || empty($nom) || empty($prenom)) {
+    $_SESSION['error'] = "Données invalides";
+    header("Location: ../../../HTML/Students/modifier/nom-prenom.php");
+    exit;
+}
 
-        $stmt = $pdo->prepare("UPDATE etudiants SET nom = ?, prenom = ? WHERE id_etudiant = ?;");
-        $stmt->execute([$nom, $prenom, $id_etudiant]);
-
+try {
+    require_once "../../dbh.inc.php";
+    
+    $stmt = $pdo->prepare("UPDATE etudiants SET nom = ?, prenom = ? WHERE id_etudiant = ?");
+    $success = $stmt->execute([$nom, $prenom, $id_etudiant]);
+    
+    if ($success && $stmt->rowCount() > 0) {
         $_SESSION['id_etudiant'] = $id_etudiant;
         $_SESSION['nom'] = $nom;
         $_SESSION['prenom'] = $prenom;
-
-        header("Location: ../../../HTML/Students/modifier/nom-prenom.php");
-    } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['success'] = "Modification réussie";
+    } else {
+        $_SESSION['error'] = "Aucune modification effectuée";
     }
-} else {
-    header("Location: ../../../HTML/Students/modifier/nom-prenom.php");
+    
+} catch (PDOException $e) {
+    error_log("Database error: " . $e->getMessage());
+    $_SESSION['error'] = "Une erreur est survenue";
 }
+
+header("Location: ../../../HTML/Students/modifier/nom-prenom.php");
+exit;

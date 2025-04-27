@@ -9,6 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {  
         require_once "../dbh.inc.php";
 
+        if (empty($nom_ens) || empty($prenom_ens) || empty($email)) {
+            $_SESSION['error'] = "Tous les champs doivent être remplis.";
+            header("Location: ../../HTML/Enseignant/ajoutense.php");
+            die();
+        }
+
         $query = "INSERT INTO enseignants (nom, prenom, email) 
         VALUES (?, ?, ?);";
 
@@ -27,10 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: ../../HTML/Enseignant/ajoutense.php");
         die();
+
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Erreur lors de l'ajout de l'enseignant: " . $e->getMessage();
+        header("Location: ../../HTML/Enseignant/ajoutense.php");
+        die();
     }
 } else {
+    $_SESSION['error'] = "La requête n'est pas valide.";
     header("Location: ../../HTML/Enseignant/ajoutense.php");
+    die();
 }
-

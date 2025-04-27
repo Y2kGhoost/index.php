@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_etudiant = $pdo->lastInsertId();
 
             $_SESSION['id_etudiant'] = $id_etudiant;
+            $_SESSION['success'] = "Étudiant ajouté avec succès.";
 
             $pdo = null;
             $stmt = null;
@@ -34,13 +35,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../../HTML/Students/ajoutst.php");
             exit();
         } else {
-            die("Filière not found.");
+            $_SESSION['error'] = "Filière non trouvée.";
+            header("Location: ../../HTML/Students/ajoutst.php");
+            exit();
         }
 
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Erreur de base de données : " . $e->getMessage();
+        header("Location: ../../HTML/Students/ajoutst.php");
+        exit();
     }
 } else {
+    $_SESSION['error'] = "Requête invalide.";
     header("Location: ../../HTML/Students/ajoutst.php");
+    exit();
 }
-
+?>

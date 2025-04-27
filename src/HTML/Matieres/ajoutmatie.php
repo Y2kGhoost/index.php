@@ -25,7 +25,7 @@ unset($_SESSION['nom_enseignant']);
         <a href="../Enseignant/enseignent.php">Enseignants</a>
         <a href="matieres.php" style="background-color: #575757;">Matières</a>
         <a href="../Filieres/filieres.php">Filières</a>
-        <a href="../Notes/Note_stu.php">Relever du note</a>
+        <a href="../Evaluation/evaluation.php">Evaluation</a>
     </nav>
     <nav id="secMenu">
         <a href="./ajoutmatie.php" style="background-color: #575757;">Ajouter Matière</a>

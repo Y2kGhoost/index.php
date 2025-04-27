@@ -23,22 +23,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
         }
 
-        $smtm = $pdo->prepare("DELETE FROM etudiants WHERE id_etudiant = ?");
-        $smtm->execute([$id_etudiant]);
+        // Proceed to delete the student
+        $stmt_delete = $pdo->prepare("DELETE FROM etudiants WHERE id_etudiant = ?");
+        $stmt_delete->execute([$id_etudiant]);
 
-        $_SESSION['nom'] = $nom_prenom['nom'];
-        $_SESSION['prenom'] = $nom_prenom['prenom'];
+        // Store the name of the student for success message
+        $_SESSION['success'] = "L'étudiant " . $nom_prenom['nom'] . " " . $nom_prenom['prenom'] . " a été supprimé avec succès.";
 
+        // Close the database connections
         $stmt_nom_prenom = null;
-        $smtm = null;
+        $stmt_delete = null;
         $pdo = null;
 
         header("Location: ../../HTML/Students/suppst.php");
         exit;
+
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Erreur de requête : " . $e->getMessage();
+        header("Location: ../../HTML/Students/suppst.php");
+        exit;
     }
 } else {
+    $_SESSION['error'] = "Requête invalide.";
     header("Location: ../../HTML/Students/suppst.php");
     exit;
 }
+?>

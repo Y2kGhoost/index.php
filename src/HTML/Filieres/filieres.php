@@ -13,7 +13,7 @@
         <a href="../Enseignant/enseignent.php">Enseignants</a>
         <a href="../Matieres/matieres.php">Matières</a>
         <a href="filieres.php" style="background-color: #575757;">Filières</a>
-        <a href="../Notes/Note_stu.php">Relever du note</a>
+        <a href="../Evaluation/evaluation.php">Evaluation</a>
     </nav>
     <nav id="secMenu">
         <a href="./ajoutfl.php">Ajouter Filiere</a>

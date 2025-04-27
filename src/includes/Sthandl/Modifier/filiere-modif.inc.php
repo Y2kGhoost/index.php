@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $filiere_name = htmlspecialchars($_POST['filiere']);
 
     if (!$id_etudiant) {
+        $_SESSION['error'] = "ID étudiant invalide.";
         header("Location: ../../../HTML/Students/modifier/modifierfl.php");
         exit;
     }
@@ -30,13 +31,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: ../../../HTML/Students/modifier/modifierfl.php");
             exit;
         } else {
+            $_SESSION['error'] = "Filière non trouvée.";
             header("Location: ../../../HTML/Students/modifier/modifierfl.php");
             exit;
         }
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Erreur base de données : " . $e->getMessage();
+        header("Location: ../../../HTML/Students/modifier/modifierfl.php");
+        exit;
     }
 } else {
-    header("Location: ../../../Students/modifier/filiere.php");
+    $_SESSION['error'] = "Requête invalide.";
+    header("Location: ../../../HTML/Students/modifier/modifierfl.php");
     exit;
 }
+?>

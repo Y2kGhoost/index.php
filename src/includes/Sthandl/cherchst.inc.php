@@ -29,27 +29,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($filiere) {
                 $nom_filiere = $filiere['nom_filiere'];
             } else {
-                die("Filiere not found");
+                $_SESSION['error'] = "Filière non trouvée.";
+                header("Location: ../../HTML/Students/cherchst.php");
+                exit();
             }
 
-            $_SESSION['id_etudiant'] = $id_etudiant; 
+            $_SESSION['id_etudiant'] = $id_etudiant;
             $_SESSION['nom'] = $nom;
             $_SESSION['prenom'] = $prenom;
             $_SESSION['date_naissance'] = $date;
             $_SESSION['nom_filiere'] = $nom_filiere;
 
+            $_SESSION['success'] = "Étudiant trouvé avec succès.";
             $pdo = null;
             $stmt = null;
 
             header("Location: ../../HTML/Students/cherchst.php");
-            die();
+            exit();
         } else {
-            die("Student not found");
+            $_SESSION['error'] = "Étudiant non trouvé.";
+            header("Location: ../../HTML/Students/cherchst.php");
+            exit();
         }
 
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Erreur de requête : " . $e->getMessage();
+        header("Location: ../../HTML/Students/cherchst.php");
+        exit();
     }
 } else {
+    $_SESSION['error'] = "Requête invalide.";
     header("Location: ../../HTML/Students/cherchst.php");
+    exit();
 }
+?>

@@ -1,8 +1,8 @@
 <?php
 
 $dsn = "mysql:unix_socket=/run/mysqld/mysqld.sock;dbname=db";
-$dbusername = "<Your UserName>";
-$dbpassword = "<Your Password>";
+$dbusername = "Ilyass";
+$dbpassword = "root";
 
 try {
     $pdo = new PDO($dsn, $dbusername, $dbpassword);
