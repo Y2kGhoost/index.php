@@ -24,7 +24,7 @@ unset($_SESSION['error']);
     <title>Ajouter Enseignant</title>
     <link rel="stylesheet" href="../../css/output.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="../../script/dark_mod.js" defer></script>
+    <script src="../../script/dark_shi.js" defer></script>
 </head>
 <body class="bg-gray-50">
     <!-- Main Navigation -->

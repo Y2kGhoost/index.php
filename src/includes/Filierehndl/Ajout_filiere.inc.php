@@ -21,11 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../../HTML/Filieres/ajoutfl.php");
         die();
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Erreur lors de l'ajout de la filière : " . $e->getMessage();
+        header("Location: ../../HTML/Filieres/ajoutfl.php");
+        exit();
     }
-}
-else {
+} else {
+    $_SESSION['error'] = "Requête non valide.";
     header("Location: ../../HTML/Filieres/ajoutfl.php");
+    exit();
 }
-
-

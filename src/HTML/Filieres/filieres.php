@@ -1,24 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filières</title>
+    <title>Gestion des Filières</title>
     <link rel="stylesheet" href="../../css/output.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../../script/dark_shi.js" defer></script>
 </head>
-<body>
-    <nav id="mainMenu">
-        <a href="../../home.php">Acceuil</a>
-        <a href="../Students/students.php">Etudiants</a>
-        <a href="../Enseignant/enseignent.php">Enseignants</a>
-        <a href="../Matieres/matieres.php">Matières</a>
-        <a href="filieres.php" style="background-color: #575757;">Filières</a>
-        <a href="../Evaluation/evaluation.php">Evaluation</a>
+<body class="bg-gray-50">
+    <!-- Main Navigation -->
+    <nav class="bg-gray-800 shadow-md">
+        <div class="container mx-auto flex overflow-x-auto">
+            <a href="../../home.php" class="text-white px-6 py-4 hover:bg-gray-700 transition-colors whitespace-nowrap">
+                <i class="fas fa-home mr-2"></i>Accueil
+            </a>
+            <a href="../Students/students.php" class="text-white px-6 py-4 hover:bg-gray-700 transition-colors whitespace-nowrap">
+                <i class="fas fa-users mr-2"></i>Étudiants
+            </a>
+            <a href="../Enseignant/enseignent.php" class="text-white px-6 py-4 hover:bg-gray-700 transition-colors whitespace-nowrap">
+                <i class="fas fa-chalkboard-teacher mr-2"></i>Enseignants
+            </a>
+            <a href="../Matieres/matieres.php" class="text-white px-6 py-4 hover:bg-gray-700 transition-colors whitespace-nowrap">
+                <i class="fas fa-book mr-2"></i>Matières
+            </a>
+            <a href="filieres.php" class="text-white px-6 py-4 bg-gray-700 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-graduation-cap mr-2"></i>Filières
+            </a>
+            <a href="../Evaluation/evaluation.php" class="text-white px-6 py-4 hover:bg-gray-700 transition-colors whitespace-nowrap">
+                <i class="fas fa-clipboard-check mr-2"></i>Évaluation
+            </a>
+            <div class="ml-auto flex items-center">
+                <button id="dark-mode-toggle" class="text-white px-4 py-2 hover:bg-gray-700 transition-colors whitespace-nowrap">
+                    <i class="fas fa-moon mr-2"></i>Mode Sombre
+                </button>
+            </div>
+        </div>
     </nav>
-    <nav id="secMenu">
-        <a href="./ajoutfl.php">Ajouter Filiere</a>
-        <a href="./modifierfl.php">Modifier Filiere</a>
-        <a href="./suppst.php">Supprimer Filiere</a>
+
+    <!-- Secondary Navigation -->
+    <nav class="bg-gray-700 shadow-sm">
+        <div class="container mx-auto flex overflow-x-auto">
+            <a href="./ajoutfl.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-plus-circle mr-2"></i>Ajouter
+            </a>
+            <a href="./modifierfl.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-edit mr-2"></i>Modifier
+            </a>
+            <a href="./suppst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-trash-alt mr-2"></i>Supprimer
+            </a>
+        </div>
     </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-8 px-4">
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-graduation-cap mr-2"></i>Gestion des Filières
+            </h2>
+            <p class="text-gray-600">Sélectionnez une action dans le menu ci-dessus.</p>
+        </div>
+    </main>
 </body>
 </html>

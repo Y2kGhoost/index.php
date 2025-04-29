@@ -35,9 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../../HTML/Matieres/ajoutmatie.php");
         exit;
     } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
+        $_SESSION['error'] = "Erreur lors de l'ajout de la matière : " . $e->getMessage();
+        header("Location: ../../HTML/Matieres/ajoutmatie.php");
+        exit;
     }
 } else {
+    $_SESSION['error'] = "Requête non valide.";
     header("Location: ../../HTML/Matieres/ajoutmatie.php");
     exit();
 }

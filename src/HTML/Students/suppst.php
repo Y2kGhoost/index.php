@@ -18,6 +18,7 @@ unset($_SESSION['error']);
     <title>Supprimer Étudiant</title>
     <link rel="stylesheet" href="../../css/output.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../../script/dark_shi.js" defer></script>
 </head>
 <body class="bg-gray-100">
     <!-- Main Navigation -->
@@ -129,7 +130,5 @@ unset($_SESSION['error']);
             </form>
         </div>
     </main>
-
-    <script src="../../script/dark_mod.js"></script>
 </body>
 </html>

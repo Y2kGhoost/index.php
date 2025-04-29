@@ -6,7 +6,7 @@
     <title>Enseignants</title>
     <link rel="stylesheet" href="../../css/output.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="../../script/dark_mod.js" defer></script>
+    <script src="../../script/dark_shi.js" defer></script>
 </head>
 <body class="bg-gray-50">
     <!-- Main Navigation -->
@@ -41,7 +41,7 @@
     <!-- Secondary Navigation -->
     <nav class="bg-gray-700 shadow-sm dark:bg-gray-700">
         <div class="container mx-auto flex overflow-x-auto">
-            <a href="./ajoutense.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
+            <a href="./ajoutense.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-user-plus mr-2"></i>Ajouter
             </a>
             <a href="./modifense.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
@@ -55,7 +55,5 @@
             </a>
         </div>
     </nav>
-
-
 </body>
 </html>
