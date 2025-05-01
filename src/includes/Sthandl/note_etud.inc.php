@@ -39,6 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-This code is not fineched yet :3 */ 
+This code is not finiched yet :3 */ 
 
 ?>
