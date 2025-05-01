@@ -14,7 +14,7 @@ unset($_SESSION['nom_filiere']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Étudiants</title>
+    <title>Liste Les Notes</title>
     <link rel="stylesheet" href="../../css/output.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="../../script/dark_shi.js" defer></script>
@@ -64,10 +64,10 @@ unset($_SESSION['nom_filiere']);
             <a href="./suppst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-user-minus mr-2"></i>Supprimer
             </a>
-            <a href="./listst.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
+            <a href="./listst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-list mr-2"></i>Lister les etudiants
             </a>
-            <a href="./note_etud.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+            <a href="./note_etud.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
                 <i class="fas fa-list mr-2"></i>Lister les notes
             </a>
         </div>
@@ -77,18 +77,18 @@ unset($_SESSION['nom_filiere']);
     <main class="container mx-auto py-8 px-4">
         <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
             <h1 class="text-2xl font-bold text-gray-800 mb-6">
-                <i class="fas fa-list mr-2"></i>Liste des Étudiants
+                <i class="fas fa-list mr-2"></i>Liste des Notes
             </h1>
             
             <form action="../../includes/Sthandl/listst.inc.php" method="post" class="mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                     <div>
-                        <label for="filiere" class="block text-sm font-medium text-gray-700 mb-1">Filière</label>
+                        <label for="filiere" class="block text-sm font-medium text-gray-700 mb-1">ID Etudiant</label>
                         <div class="relative rounded-md shadow-sm">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-university text-gray-400"></i>
+                                <i class="fas fa-users text-gray-400"></i>
                             </div>
-                            <input type="text" name="fil" id="filiere" placeholder="Nom de la filière" 
+                            <input type="number" name="fil" id="id_etud" placeholder="ID de l'etudiant" 
                                    class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
                                    value="<?php echo isset($_POST['fil']) ? htmlspecialchars($_POST['fil']) : ''; ?>">
                         </div>

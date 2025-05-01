@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$succes = $_SESSION['success'] ?? null;
+$error = $_SESSION['error'] ?? null;
+
+unset($_SESSION['success'], $_SESSION['error']);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,7 +55,7 @@
             <a href="./modifeval.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-edit mr-2"></i>Modifier Note
             </a>
-            <a href="./suprimeval.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+            <a href="./suprimeval.php" class="text-white px-6 py-4 bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-trash-alt mr-2"></i>Supprimer Note
             </a>
         </div>
@@ -57,7 +65,7 @@
 <main class="container mx-auto py-8 px-4">
         <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">
-                <i class="fas fa-clipboard-check mr-2"></i>Supprimer un Étudiant
+                <i class="fas fa-trash-alt mr-2"></i>Supprimer une Note
             </h2>
             
             <form action="../../includes/Evaluation/sumpimnote.inc.php" method="post">
@@ -107,7 +115,7 @@
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm text-green-700">
-                                    Étudiant supprimé: <span class="font-semibold"><?php echo htmlspecialchars($nom . ' ' . $prenom); ?></span>
+                                    <span class="font-semibold"><?php echo htmlspecialchars($succes); ?></span>
                                 </p>
                             </div>
                         </div>

@@ -53,8 +53,11 @@
             <a href="./suppst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-user-minus mr-2"></i>Supprimer
             </a>
-            <a href="./listst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
-                <i class="fas fa-list mr-2"></i>Lister
+            <a href="./listst.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
+                <i class="fas fa-list mr-2"></i>Lister les etudiants
+            </a>
+            <a href="./note_etud.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-list mr-2"></i>Lister les notes
             </a>
         </div>
     </nav>

@@ -49,7 +49,7 @@ unset($_SESSION['id_etudiant'], $_SESSION['error']);
     <!-- Secondary Navigation -->
     <nav class="bg-gray-700 shadow-sm">
         <div class="container mx-auto flex overflow-x-auto">
-            <a href="./ajoutst.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
+            <a href="./ajoutst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-user-plus mr-2"></i>Ajouter
             </a>
             <a href="./modfst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
@@ -61,8 +61,11 @@ unset($_SESSION['id_etudiant'], $_SESSION['error']);
             <a href="./suppst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-user-minus mr-2"></i>Supprimer
             </a>
-            <a href="./listst.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
-                <i class="fas fa-list mr-2"></i>Lister
+            <a href="./listst.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
+                <i class="fas fa-list mr-2"></i>Lister les etudiants
+            </a>
+            <a href="./note_etud.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-list mr-2"></i>Lister les notes
             </a>
         </div>
     </nav>

@@ -4,15 +4,21 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id_etud = filter_input(INPUT_POST, "id_etud", FILTER_VALIDATE_INT);
     $id_mat = filter_input(INPUT_POST, "id_mat", FILTER_VALIDATE_INT);
+    $note = htmlspecialchars($_POST['newNote']);
 
     if (!$id_etud) {
         $_SESSION['error'] = "Étudiant intouvable.";
-        header("Location: ../../HTML/Evaluation/suprimeval.php");
+        header("Location: ../../HTML/Evaluation/modifeval.php");
         exit;
     } 
     if (!$id_mat) {
         $_SESSION['error'] = "Matiere Introuvable.";
-        header("Location: ../../HTML/Evaluation/suprimeval.php");
+        header("Location: ../../HTML/Evaluation/modifeval.php");
+        exit;
+    }
+    if (!$note) {
+        $_SESSION['error'] = "Note Introuvable.";
+        header("Location: ../../HTML/Evaluation/modifeval.php");
         exit;
     }
 
@@ -25,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (!$nom_prenom) {
             $_SESSION['error'] = "Aucun étudiant trouvé avec cet ID.";
-            header("Location: ../../HTML/Evaluation/suprimeval.php");
+            header("Location: ../../HTML/Evaluation/modifeval.php");
             exit;
         }
 
@@ -35,30 +41,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (!$matiere) {
             $_SESSION['error'] = "Aucun matiere trouvé avec cet ID.";
-            header("Location: ../../HTML/Evaluation/suprimeval.php");
+            header("Location: ../../HTML/Evaluation/modifeval.php");
             exit;
         }
 
-        $stmt_delete = $pdo->prepare("DELETE FROM evaluations WHERE id_etudiant = ? AND id_matiere = ?;");
-        $stmt_delete->execute([$id_etud, $id_mat]);
+        $stmt_delete = $pdo->prepare("UPDATE evaluations SET note = ? WHERE id_etudiant = ? AND id_matiere = ?;");
+        $stmt_delete->execute([$note, $id_etud, $id_mat]);
 
-        $_SESSION['success'] = "La note de l'étudiant " . htmlspecialchars($nom_prenom['nom']) . " " . htmlspecialchars($nom_prenom['prenom']) . " dans la matiere " . htmlspecialchars($matiere['nom_matiere']) . " a été supprimé avec succès.";
+        $_SESSION['success'] = "La note de l'étudiant " . htmlspecialchars($nom_prenom['nom']) . " " . htmlspecialchars($nom_prenom['prenom']) . " dans la matiere " . htmlspecialchars($matiere['nom_matiere']) . " a été modifiere avec succès (Nouveau Note: " . htmlspecialchars($note) . ").";
 
         $stmt_delete = null;
         $stmt_matiere = null;
         $stmt_nom_prenom = null;
         $pdo = null;
 
-        header("Location: ../../HTML/Evaluation/suprimeval.php");
+        header("Location: ../../HTML/Evaluation/modifeval.php");
         exit;
 
     } catch (PDOException $e) {
         $_SESSION['error'] = "Error de requête: " . $e->getMessage();
-        header("Location: ../../HTML/Evaluation/suprimeval.php");
+        header("Location: ../../HTML/Evaluation/modifeval.php");
         exit;
     }
 } else {
     $_SESSION['error'] = "Requête invalide.";
-    header("Location: ../../HTML/Evaluation/suprimeval.php");
+    header("Location: ../../HTML/Evaluation/modifeval.php");
     exit;
 }
