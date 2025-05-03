@@ -77,4 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['error'] = "Requête invalide.";
     header("Location: ../../HTML/Students/note_etud.php");
     exit;
+
 }
+
+?>
+
+ 
+
+
+
