@@ -35,7 +35,7 @@ unset($_SESSION['succes'], $_SESSION['error']);
             <a href="../Filieres/filieres.php" class="text-white px-6 py-4 hover:bg-gray-700 transition-colors whitespace-nowrap">
                 <i class="fas fa-graduation-cap mr-2"></i>Filières
             </a>
-            <a href="./Note_stu.php" class="text-white px-6 py-4 bg-gray-700 hover:bg-gray-600 transition-colors whitespace-nowrap">
+            <a href="./evaluation.php" class="text-white px-6 py-4 bg-gray-700 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-clipboard-check mr-2"></i>Évaluation
             </a>
             <div class="ml-auto flex items-center">

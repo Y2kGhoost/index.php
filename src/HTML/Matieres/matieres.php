@@ -50,11 +50,14 @@
             <a href="./suprimematie.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-trash-alt mr-2"></i>Supprimer
             </a>
+            <a href="./liste_mat.php" class="text-white px-6 py-4  hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-book mr-2"></i>Lister matiere
+            </a>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto py-8 px-4">
+    <main class="container mx-auto py-8 px-4 text-center">
         <div class="bg-white rounded-lg shadow-md p-6">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">
                 <i class="fas fa-book mr-2"></i>Gestion des Matières

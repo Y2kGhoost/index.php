@@ -1,12 +1,15 @@
 <?php
 session_start();
-$students = isset($_SESSION['etudiants']) ? $_SESSION['etudiants'] : [];
+$student_info = isset($_SESSION['student_info']) ? $_SESSION['student_info'] : null;
+$subjects = isset($_SESSION['subjects']) ? $_SESSION['subjects'] : [];
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : null;
-$nom_filiere = isset($_SESSION['nom_filiere']) ? $_SESSION['nom_filiere'] : null;
+$success = isset($_SESSION['success']) ? $_SESSION['success'] : null;
 
-unset($_SESSION['etudiants']);
+// Clear session variables
+unset($_SESSION['student_info']);
+unset($_SESSION['subjects']);
 unset($_SESSION['error']);
-unset($_SESSION['nom_filiere']);
+unset($_SESSION['success']);
 ?>
 
 <!DOCTYPE html>
@@ -80,21 +83,21 @@ unset($_SESSION['nom_filiere']);
                 <i class="fas fa-list mr-2"></i>Liste des Notes
             </h1>
             
-            <form action="../../includes/Sthandl/listst.inc.php" method="post" class="mb-8">
+            <form action="../../includes/Sthandl/note_etud.inc.php" method="post" class="mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                     <div>
-                        <label for="filiere" class="block text-sm font-medium text-gray-700 mb-1">ID Etudiant</label>
+                        <label for="id_etud" class="block text-sm font-medium text-gray-700 mb-1">ID Etudiant</label>
                         <div class="relative rounded-md shadow-sm">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-users text-gray-400"></i>
+                                <i class="fas fa-id-card text-gray-400"></i>
                             </div>
-                            <input type="number" name="fil" id="id_etud" placeholder="ID de l'etudiant" 
+                            <input type="number" name="id_etud" id="id_etud" placeholder="ID de l'étudiant" 
                                    class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
-                                   value="<?php echo isset($_POST['fil']) ? htmlspecialchars($_POST['fil']) : ''; ?>">
+                                   value="<?php echo isset($_POST['id_etud']) ? htmlspecialchars($_POST['id_etud']) : ''; ?>" required>
                         </div>
                     </div>
                     <div>
-                        <button type="submit" name="subm" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors">
+                        <button type="submit" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors">
                             <i class="fas fa-search mr-2"></i>Rechercher
                         </button>
                     </div>
@@ -114,43 +117,71 @@ unset($_SESSION['nom_filiere']);
                 </div>
             <?php endif; ?>
 
-            <?php if (!empty($students)): ?>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prénom</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date Naissance</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Filière</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <?php foreach ($students as $student): ?>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        <?php echo htmlspecialchars($student['id_etudiant']); ?>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <?php echo htmlspecialchars($student['nom']); ?>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <?php echo htmlspecialchars($student['prenom']); ?>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <?php echo date('d/m/Y', strtotime($student['date_naissance'])); ?>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            <?php echo htmlspecialchars($nom_filiere); ?>
-                                        </span>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+            <?php if ($success) : ?>
+                <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-green-700"><?php echo htmlspecialchars($success); ?></p>
+                        </div>
+                    </div>
                 </div>
+            <?php endif; ?>
+
+            <?php if ($student_info): ?>
+                <div class="mb-8 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Informations de l'étudiant</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Nom</p>
+                            <p class="font-medium text-gray-900 dark:text-gray-100"><?php echo htmlspecialchars($student_info['nom']); ?></p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Prénom</p>
+                            <p class="font-medium text-gray-900 dark:text-gray-100"><?php echo htmlspecialchars($student_info['prenom']); ?></p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Filière</p>
+                            <p class="font-medium text-gray-900 dark:text-gray-100"><?php echo htmlspecialchars($student_info['nom_filiere']); ?></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <?php if (!empty($subjects)): ?>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matière</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date d'évaluation</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <?php foreach ($subjects as $subject): ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            <?php echo htmlspecialchars($subject['matiere']); ?>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <?php echo htmlspecialchars($subject['note']); ?>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <?php echo date('d/m/Y', strtotime($subject['date_evaluation'])); ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php else: ?>
+                    <div class="text-center py-4 text-gray-500">
+                        <p>Aucune note enregistrée pour cet étudiant.</p>
+                    </div>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
     </main>

@@ -55,5 +55,14 @@
             </a>
         </div>
     </nav>
+
+    <main class="container mx-auto py-8 px-4 text-center">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-chalkboard-teacher mr-2"></i>Gestion des enseignants
+            </h2>
+            <p class="text-gray-600">Sélectionnez une action dans le menu ci-dessus.</p>
+        </div>
+    </main>
 </body>
 </html>

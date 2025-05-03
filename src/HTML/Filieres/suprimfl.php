@@ -3,6 +3,17 @@ session_start();
 $nom_fil = $_SESSION['nom_fil'] ?? null;
 $error = $_SESSION['error'] ?? null;
 
+// Load filières for dropdown
+try {
+    require_once "../../includes/dbh.inc.php";
+    $stmt = $pdo->query("SELECT id_filiere, nom_filiere FROM filieres ORDER BY nom_filiere");
+    $filieres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $error = "Erreur lors du chargement des filières";
+    error_log("DB error: " . $e->getMessage());
+    $filieres = [];
+}
+
 unset($_SESSION['nom_fil'], $_SESSION['error']);
 ?>
 
@@ -71,13 +82,20 @@ unset($_SESSION['nom_fil'], $_SESSION['error']);
                 
                 <form action="../../includes/Filierehndl/suprim_fil.inc.php" method="post" class="space-y-6">
                     <div>
-                        <label for="id_fil" class="block text-sm font-medium text-gray-700 mb-1">ID Filière</label>
-                        <input type="number" id="id_fil" name="id_fil" placeholder="Entrez l'ID de la filière" required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                        <label for="id_fil" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Filière</label>
+                        <select name="id_fil" id="id_fil" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                            <option value="">Sélectionner une filière</option>
+                            <?php foreach ($filieres as $f): ?>
+                                <option value="<?= htmlspecialchars($f['id_filiere']) ?>">
+                                    <?= htmlspecialchars($f['nom_filiere']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <div class="mt-8 flex justify-end">
-                        <button type="submit" class="px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+                        <button type="submit" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
                             <i class="fas fa-trash mr-2"></i>Supprimer
                         </button>
                     </div>

@@ -1,44 +1,80 @@
 <?php
-/*session_start();
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id_etud = filter_input(INPUT_POST, "id_etud", FILTER_VALIDATE_INT);
 
+    if (!$id_etud) {
+        $_SESSION['error'] = "ID étudiant invalide.";
+        header("Location: ../../HTML/Students/note_etud.php");
+        exit;
+    }
+
     try {
         require_once "../dbh.inc.php";
 
-        $stmt_filiere = $pdo->prepare("SELECT id_filiere, nom_filiere FROM filieres WHERE nom_filiere = ?");
-        $stmt_filiere->execute([$filiere_name]);
-        $filiere = $stmt_filiere->fetch(PDO::FETCH_ASSOC);
+        $query = "
+            SELECT 
+                e.nom, 
+                e.prenom, 
+                f.nom_filiere,
+                m.nom_matiere,
+                ev.note,
+                ev.date_evaluation
+            FROM 
+                etudiants e
+            JOIN 
+                filieres f ON e.id_filiere = f.id_filiere
+            LEFT JOIN 
+                evaluations ev ON e.id_etudiant = ev.id_etudiant
+            LEFT JOIN 
+                matieres m ON ev.id_matiere = m.id_matiere
+            WHERE 
+                e.id_etudiant = ?
+            ORDER BY 
+                m.nom_matiere, ev.date_evaluation
+        ";
 
-        if ($filiere) {
-            $id_filiere = $filiere["id_filiere"];
-            $stmt = $pdo->prepare("SELECT * FROM etudiants WHERE id_filiere = ?");
-            $stmt->execute([$id_filiere]);
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$id_etud]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $_SESSION['etudiants'] = $etudiants;
-            $_SESSION['nom_filiere'] = $filiere['nom_filiere'];
-            $_SESSION['success'] = "Filière et étudiants trouvés avec succès.";
+        if ($results) {
+            // Organize data for display
+            $student_info = [
+                'nom' => $results[0]['nom'],
+                'prenom' => $results[0]['prenom'],
+                'nom_filiere' => $results[0]['nom_filiere']
+            ];
+            
+            $subjects = [];
+            foreach ($results as $row) {
+                if ($row['nom_matiere']) {
+                    $subjects[] = [
+                        'matiere' => $row['nom_matiere'],
+                        'note' => $row['note'],
+                        'date_evaluation' => $row['date_evaluation']
+                    ];
+                }
+            }
+
+            $_SESSION['student_info'] = $student_info;
+            $_SESSION['subjects'] = $subjects;
+            $_SESSION['success'] = "Informations de l'étudiant trouvées avec succès.";
         } else {
-            $_SESSION['error'] = "Filière non trouvée.";
+            $_SESSION['error'] = "Aucun étudiant trouvé avec cet ID.";
         }
 
-        header("Location: ../../HTML/Students/listst.php");
+        header("Location: ../../HTML/Students/note_etud.php");
         exit;
 
     } catch (PDOException $e) {
         $_SESSION['error'] = "Erreur de requête : " . $e->getMessage();
-        header("Location: ../../HTML/Students/listst.php");
+        header("Location: ../../HTML/Students/note_etud.php");
         exit;
     }
 } else {
     $_SESSION['error'] = "Requête invalide.";
-    header("Location: ../../HTML/Students/listst.php");
+    header("Location: ../../HTML/Students/note_etud.php");
     exit;
 }
-?>
-
-This code is not fineched yet :3 */ 
-
-?>
