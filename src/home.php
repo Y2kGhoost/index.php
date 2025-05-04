@@ -1,7 +1,15 @@
 <?php
+// Start at the top of the file to prevent any output before session
 session_start();
-require_once "./includes/dbh.inc.php";
 
+// Include required files
+require_once "./includes/dbh.inc.php";
+require_once "./includes/auth.inc.php";
+
+// Check if user is authenticated admin before proceeding
+requireAdmin();
+
+// Only proceed to load the page content if the auth check passes
 try {
     // Get student count
     $queryStudents = "SELECT COUNT(*) as total FROM etudiants";
@@ -82,6 +90,9 @@ try {
                 <button id="dark-mode-toggle" class="text-white px-4 py-2 hover:bg-gray-700 transition-colors whitespace-nowrap">
                     <i class="fas fa-moon mr-2"></i>Mode Sombre
                 </button>
+                <a href="./logout.php" class="text-white px-4 py-2 bg-red-600 hover:bg-red-700 transition-colors whitespace-nowrap">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
+                </a>
             </div>
         </div>
     </nav>
@@ -108,6 +119,7 @@ try {
             <div class="p-8 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
                 <h1 class="text-3xl font-bold mb-2">Bienvenue sur le Tableau de Bord</h1>
                 <p class="text-blue-100">Gestion complète de votre établissement scolaire</p>
+                <p class="text-blue-100 mt-2">Connecté en tant qu'administrateur: <?= htmlspecialchars($_SESSION['username'] ?? 'Admin') ?></p>
             </div>
         </div>
 
@@ -166,20 +178,26 @@ try {
                     </h2>
                 </div>
                 <div class="divide-y divide-gray-200">
-                    <?php foreach($recentStudents ?? [] as $student): ?>
-                    <div class="p-4 hover:bg-gray-50 transition-colors">
-                        <div class="flex items-center">
-                            <div class="p-2 rounded-full bg-blue-100 text-blue-600 mr-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div>
-                                <p class="font-medium"><?= htmlspecialchars($student['prenom'] . ' ' . $student['nom']) ?></p>
-                                <p class="text-sm text-gray-500"><?= htmlspecialchars($student['nom_filiere']) ?></p>
-                                <p class="text-xs text-gray-400">ID: <?= htmlspecialchars($student['id_etudiant']) ?></p>
+                    <?php if(!empty($recentStudents)): ?>
+                        <?php foreach($recentStudents as $student): ?>
+                        <div class="p-4 hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center">
+                                <div class="p-2 rounded-full bg-blue-100 text-blue-600 mr-4">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium"><?= htmlspecialchars($student['prenom'] . ' ' . $student['nom']) ?></p>
+                                    <p class="text-sm text-gray-500"><?= htmlspecialchars($student['nom_filiere']) ?></p>
+                                    <p class="text-xs text-gray-400">ID: <?= htmlspecialchars($student['id_etudiant']) ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="p-4 text-center text-gray-500">
+                            Aucun étudiant récent
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="p-4 text-center border-t border-gray-200">
                     <a href="./HTML/Students/students.php" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
@@ -196,21 +214,26 @@ try {
                     </h2>
                 </div>
                 <div class="divide-y divide-gray-200">
-                    <?php foreach($recentEvaluations ?? [] as $eval): ?>
-                    <div class="p-4 hover:bg-gray-50 transition-colors">
-                        <div class="flex items-center">
-                            <div class="p-2 rounded-full bg-green-100 text-green-600 mr-4">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div>
-                            <p class="font-medium"><?= htmlspecialchars($eval['prenom'] . ' ' . $eval['nom']) ?></p>
-                                <p class="text-sm text-gray-500"><?= htmlspecialchars($eval['nom_matiere']) ?> - Note: <?= htmlspecialchars($eval['note']) ?>/20</p>
-                                <p class="text-xs text-gray-400"><?= htmlspecialchars($eval['date_evaluation']) ?></p>
+                    <?php if(!empty($recentEvaluations)): ?>
+                        <?php foreach($recentEvaluations as $eval): ?>
+                        <div class="p-4 hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center">
+                                <div class="p-2 rounded-full bg-green-100 text-green-600 mr-4">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium"><?= htmlspecialchars($eval['prenom'] . ' ' . $eval['nom']) ?></p>
+                                    <p class="text-sm text-gray-500"><?= htmlspecialchars($eval['nom_matiere']) ?> - Note: <?= htmlspecialchars($eval['note']) ?>/20</p>
+                                    <p class="text-xs text-gray-400"><?= htmlspecialchars($eval['date_evaluation']) ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="p-4 text-center text-gray-500">
+                            Aucune évaluation récente
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="p-4 text-center border-t border-gray-200">
                     <a href="./HTML/Evaluation/evaluation.php" class="text-blue-600 hover:text-blue-800 text-sm font-medium">

@@ -12,56 +12,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
+
+            // Admin-specific verification
+            if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+                header("Location: ../login.php?error=not_logged_in");
+                exit();
+            }
             
-            // ADMIN-SPECIFIC VERIFICATION
-            if ($user['role'] === 'admin') {
-                // Check if admin_approved exists and is TRUE (1)
-                $isApproved = isset($user['admin_approved']) ? (bool)$user['admin_approved'] : true;
-                
-                if (!$isApproved) {
-                    die("Your admin account requires approval. Please contact the system administrator.");
-                }
-                
-                // Check if is_verified exists and is TRUE (1)
-                $isVerified = isset($user['is_verified']) ? (bool)$user['is_verified'] : true;
-                
-                if (!$isVerified) {
-                    die("Please verify your email first.");
-                }
+            // Optionally: If the user is logged in but session expired or invalidated, redirect them
+            if ($_SESSION['ip_address'] !== $_SERVER['REMOTE_ADDR'] || $_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT']) {
+                header("Location: ../login.php?error=session_invalid");
+                exit();
             }
 
-            // Start secure session
-            session_regenerate_id(true);
-            $_SESSION = [
+            // Build session data
+            $sessionData = [
                 'user_id' => $user['id'],
                 'username' => $user['username'],
                 'role' => $user['role'],
-                'is_admin' => ($user['role'] === 'admin'),
-                'ip' => $_SERVER['REMOTE_ADDR'],
+                'ip_address' => $_SERVER['REMOTE_ADDR'],
                 'user_agent' => $_SERVER['HTTP_USER_AGENT'],
                 'last_activity' => time()
             ];
 
-            // Redirect based on role
+            session_regenerate_id(true);
+            $_SESSION = $sessionData;
+
+            // Redirect to appropriate dashboard
             $redirectMap = [
-                'admin' => './Admin/dashboard.php',
-                'teacher' => '../HTML/Enseignant/dashboard.php', 
+                'admin'   => '../home.php',
+                'teacher' => '../HTML/Enseignant/dashboard.php',
                 'student' => '../HTML/Students/dashboard.php'
             ];
-            
-            if (isset($redirectMap[$user['role']])) {
-                header("Location: " . $redirectMap[$user['role']]);
-                exit();
-            }
-            
+
+            $redirectTo = $redirectMap[$user['role']] ?? '../home.php';
+            header("Location: $redirectTo");
+            exit();
         } else {
-            $error = "Invalid username or password";
+            $error = "Nom d'utilisateur ou mot de passe invalide.";
         }
     } catch (PDOException $e) {
-        $error = "Database error. Please try again later.";
+        $error = "Erreur de base de données. Veuillez réessayer plus tard.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">

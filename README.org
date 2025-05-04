@@ -1,0 +1,23 @@
+#+AUTHOR: GUEDDARI Ilyass
+#+CREATEURS: GUEDDARI ILYASS | DAHBI ZINEB | HIBA <TODO: n3tf kniytha haha>
+#+DESCRIPTION: PHP PROJET
+
+
+* GESTION SCOLARITE
+C'est un siteWeb codee avec HTML/PHP, CSS(Tailwindcss), TypeScript et MySQL pour la base de donnee
+
+** Structure de projet
+Le projet est structuree en 4 categorie:
+
+*** node-modules (package pour Tailwindcss)
+*** src
+|_HTML
+|_CSS
+|_includes
+|_Script
+|_home.php
+
+*** package-lock.json
+*** package.json
+*** tailwind.config.json
+*** tailwindcss.sh
