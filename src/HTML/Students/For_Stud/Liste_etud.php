@@ -104,6 +104,11 @@ $success = null;
                 <i class="fas fa-list mr-2"></i>Lister les notes
             </a>
         </div>
+        <div class="container mx-auto flex overflow-x-auto">
+            <a href="./attestation.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
+                <i class="fas fa-list mr-2"></i>Attestation
+            </a>
+        </div>
     </nav>
 
     <main class="container mx-auto py-8 px-4">
