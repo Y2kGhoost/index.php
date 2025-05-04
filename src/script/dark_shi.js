@@ -28,15 +28,13 @@ var DarkModeToggle = /** @class */ (function () {
     };
     DarkModeToggle.prototype.updateButtonIcon = function (theme) {
         this.toggleButton.innerHTML = theme === 'dark'
-            ? '<i class="fas fa-sun mr-2"></i>Mode Clair'
-            : '<i class="fas fa-moon mr-2"></i>Mode Sombre';
+            ? '<i class="fas fa-sun mr-2"></i>NOT WORKING'
+            : '<i class="fas fa-moon mr-2"></i>NOT WORKING';
     };
     DarkModeToggle.prototype.init = function () {
         var _this = this;
-        // Use saved theme or system preference
         var initialTheme = this.getSavedTheme() || this.getSystemPreference();
         this.setTheme(initialTheme);
-        // Add event listener
         this.toggleButton.addEventListener('click', function () {
             var newTheme = _this.htmlElement.classList.contains('dark')
                 ? 'light'
@@ -46,7 +44,6 @@ var DarkModeToggle = /** @class */ (function () {
     };
     return DarkModeToggle;
 }());
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
     try {
         new DarkModeToggle('dark-mode-toggle');

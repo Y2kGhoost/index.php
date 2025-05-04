@@ -81,7 +81,7 @@ $success = null;
     <!-- Main Navigation -->
     <nav class="bg-gray-800 shadow-md">
         <div class="container mx-auto flex overflow-x-auto justify-between items-center">
-            <a href="../Students/For_Stud/stud_for_stud_lol.php" class="text-white px-6 py-4 bg-gray-700 hover:bg-gray-600 transition-colors whitespace-nowrap flex items-center">
+            <a href="./stud_for_stud_lol.php" class="text-white px-6 py-4 bg-gray-700 hover:bg-gray-600 transition-colors whitespace-nowrap flex items-center">
                 <i class="fas fa-users mr-2"></i>Étudiants
             </a>
             <div class="ml-auto flex items-center">
@@ -103,10 +103,8 @@ $success = null;
             <a href="./note_etud.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
                 <i class="fas fa-list mr-2"></i>Lister les notes
             </a>
-        </div>
-        <div class="container mx-auto flex overflow-x-auto">
-            <a href="./attestation.php" class="text-white px-6 py-4 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">
-                <i class="fas fa-list mr-2"></i>Attestation
+            <a href="./attestation.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-file-alt mr-2"></i>Attestation
             </a>
         </div>
     </nav>

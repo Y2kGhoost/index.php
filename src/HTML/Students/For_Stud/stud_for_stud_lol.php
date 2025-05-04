@@ -33,6 +33,9 @@
             <a href="./Liste_etud.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-list mr-2"></i>Lister les notes
             </a>
+            <a href="./attestation.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-file-alt mr-2"></i>Attestation
+            </a>
         </div>
     </nav>
 

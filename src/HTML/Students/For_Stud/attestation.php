@@ -37,7 +37,7 @@ if (!$etudiant) {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
             min-height: 100vh;
         }
-        
+
         .attestation-container {
             display: flex;
             justify-content: center;
@@ -45,7 +45,7 @@ if (!$etudiant) {
             min-height: calc(100vh - 140px);
             padding: 2rem;
         }
-        
+
         .attestation-card {
             background: white;
             border-radius: 1rem;
@@ -57,11 +57,11 @@ if (!$etudiant) {
             max-width: 800px;
             transition: all 0.3s ease;
         }
-        
+
         .attestation-card:hover {
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
-        
+
         .attestation-card:before {
             content: '';
             position: absolute;
@@ -71,14 +71,14 @@ if (!$etudiant) {
             height: 5px;
             background: linear-gradient(90deg, #3b82f6, #1e40af);
         }
-        
+
         .school-logo {
             width: 120px;
             height: auto;
             display: block;
             margin: 0 auto 2rem;
         }
-        
+
         .attestation-title {
             font-size: 2rem;
             color: #1e40af;
@@ -88,7 +88,7 @@ if (!$etudiant) {
             position: relative;
             padding-bottom: 1rem;
         }
-        
+
         .attestation-title:after {
             content: '';
             position: absolute;
@@ -99,7 +99,7 @@ if (!$etudiant) {
             height: 3px;
             background: linear-gradient(90deg, #3b82f6, #1e40af);
         }
-        
+
         .attestation-content {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -107,14 +107,14 @@ if (!$etudiant) {
             text-align: justify;
             margin-bottom: 2rem;
         }
-        
+
         .attestation-signature {
             text-align: right;
             font-style: italic;
             margin-bottom: 2rem;
             color: #4b5563;
         }
-        
+
         .download-btn {
             display: block;
             margin: 0 auto;
@@ -128,12 +128,12 @@ if (!$etudiant) {
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
-        
+
         .download-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(59, 130, 246, 0.4);
         }
-        
+
         .official-stamp {
             width: 120px;
             height: 120px;
@@ -143,33 +143,33 @@ if (!$etudiant) {
             opacity: 0.2;
             transform: rotate(-15deg);
         }
-        
+
         .top-nav {
             background: linear-gradient(90deg, #1f2937, #111827);
             padding: 0.5rem 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .sub-nav {
             background: linear-gradient(90deg, #374151, #1f2937);
             padding: 0.25rem 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
-        
+
         .nav-link {
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .nav-link:hover {
             background: rgba(255, 255, 255, 0.1);
         }
-        
+
         .nav-link i {
             transition: all 0.3s ease;
         }
-        
+
         .nav-link:hover i {
             transform: translateX(3px);
         }
@@ -179,7 +179,7 @@ if (!$etudiant) {
     <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="container mx-auto flex overflow-x-auto justify-between items-center">
-            <a href="../Students/For_Stud/stud_for_stud_lol.php" class="nav-link text-white px-6 py-4 bg-gray-700 hover:bg-gray-600 transition-colors whitespace-nowrap flex items-center">
+            <a href="./stud_for_stud_lol.php" class="nav-link text-white px-6 py-4 bg-gray-700 hover:bg-gray-600 transition-colors whitespace-nowrap flex items-center">
                 <i class="fas fa-users mr-2"></i>Étudiants
             </a>
             <div class="ml-auto flex items-center">
@@ -198,7 +198,7 @@ if (!$etudiant) {
     <!-- Sub Navigation -->
     <nav class="sub-nav">
         <div class="container mx-auto flex overflow-x-auto">
-            <a href="./note_etud.php" class="nav-link text-white px-6 py-3 hover:bg-gray-500 transition-colors whitespace-nowrap">
+            <a href="./Liste_etud.php" class="nav-link text-white px-6 py-3 hover:bg-gray-500 transition-colors whitespace-nowrap">
                 <i class="fas fa-list mr-2"></i>Lister les notes
             </a>
             <a href="./attestation.php" class="nav-link text-white px-6 py-3 bg-gray-600 hover:bg-gray-500 transition-colors whitespace-nowrap">

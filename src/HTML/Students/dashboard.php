@@ -16,7 +16,7 @@ requireRole('student');
     <!-- Main Navigation -->
     <nav class="bg-gray-800 shadow-md">
         <div class="container mx-auto flex overflow-x-auto justify-between items-center">
-            <a href="../Students/For_Stud/stud_for_stud_lol.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap flex items-center">
+            <a href="./For_Stud/stud_for_stud_lol.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap flex items-center">
                 <i class="fas fa-users mr-2"></i>Étudiants
             </a>
             <div class="ml-auto flex items-center">

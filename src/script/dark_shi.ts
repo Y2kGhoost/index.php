@@ -38,8 +38,8 @@ class DarkModeToggle {
 
   private updateButtonIcon(theme: Theme): void {
     this.toggleButton.innerHTML = theme === 'dark'
-      ? '<i class="fas fa-sun mr-2"></i>Mode Clair'
-      : '<i class="fas fa-moon mr-2"></i>Mode Sombre';
+      ? '<i class="fas fa-sun mr-2"></i>NOT WORKING'
+      : '<i class="fas fa-moon mr-2"></i>NOT WORKING';
   }
 
   private init(): void {
