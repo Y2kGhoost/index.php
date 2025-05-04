@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
 
 $id_enseignant = isset($_SESSION['id_enseignant']) ? $_SESSION['id_enseignant'] : null;
 $nom_ens = isset($_SESSION['nom']) ? $_SESSION['nom'] : null;

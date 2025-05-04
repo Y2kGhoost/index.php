@@ -9,15 +9,17 @@ C'est un siteWeb codee avec HTML/PHP, CSS(Tailwindcss), TypeScript et MySQL pour
 ** Structure de projet
 Le projet est structuree en 4 categorie:
 
-*** node-modules (package pour Tailwindcss)
+*** node-modules (package pour Tailwindcss et JsPdf)
 *** src
-|_HTML
-|_CSS
-|_includes
-|_Script
-|_home.php
-
+**** assets
+**** HTML
+**** css (Tailwindcss)
+**** includes (DataBase management)
+**** script (avec Typescript)
 *** package-lock.json
 *** package.json
-*** tailwind.config.json
+*** tailwind.config.json (Manage de custom css color)
 *** tailwindcss.sh
+
+Pour le code source. Le projet en GitHub: https://github.com/Y2kGhoost/index.php
+

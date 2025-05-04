@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
+
 $nom_filiere = $_SESSION['nom_filiere'] ?? null;
 $nom_matiere = $_SESSION['nom_matiere'] ?? null;
 $nom_ens = $_SESSION['nom_enseignant'] ?? null;

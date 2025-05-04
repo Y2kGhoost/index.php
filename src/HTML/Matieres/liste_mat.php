@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
 
 // Retrieve and clear session messages
 $subjects = $_SESSION['subjects'] ?? [];

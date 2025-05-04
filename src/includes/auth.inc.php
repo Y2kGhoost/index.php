@@ -10,8 +10,25 @@ function requireRole($requiredRole) {
         exit();
     }
 
-    if ($_SESSION['role'] !== $requiredRole) {
-        header("Location: ../unauthorized.php");
+    $possiblePaths = [
+        './HTML/login.php',
+        '../HTML/login.php',
+        '../../HTML/login.php',
+    ];
+    
+    $found = false;
+    
+    foreach ($possiblePaths as $path) {
+        if (file_exists($path)) {
+            header("Location: $path?error=not_logged_in");
+            $found = true;
+            break;
+        }
+    }
+    
+    if (!$found) {
+        // fallback path if no login.php was found
+        echo "Page de login introuvable.";
         exit();
     }
 
@@ -19,6 +36,3 @@ function requireRole($requiredRole) {
     $_SESSION['last_activity'] = time();
 }
 
-function requireAdmin() {
-    requireRole('admin');
-}

@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
+
 $id_mat = $_SESSION['id_mat'] ?? null;
 $newEnsName = $_SESSION['newEnsName'] ?? null;
 $error = $_SESSION['error'] ?? null;

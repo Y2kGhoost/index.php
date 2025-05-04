@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/auth.inc.php';
-requireRole('teacher'); // or 'teacher', 'student'
+requireRole('teacher');
 ?>
 <!DOCTYPE html>
 <html lang="fr">

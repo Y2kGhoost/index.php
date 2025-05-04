@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
 
 $enss = $_SESSION['ens'] ?? [];
 $error = $_SESSION['error'] ?? null;

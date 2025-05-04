@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once '../../../includes/auth.inc.php';
+requireRole('admin');
+
 $id_etudiant = isset($_SESSION['id_etudiant']) ? $_SESSION['id_etudiant'] : null;
 $date_naissance = isset($_SESSION['date_naissance']) ? $_SESSION['date_naissance'] : null;
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : null;

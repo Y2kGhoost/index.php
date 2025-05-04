@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
 
 // Initialize variables from session
 $nom = isset($_SESSION['nom']) ? $_SESSION['nom'] : null;

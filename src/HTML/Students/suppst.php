@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
 
 $nom = isset($_SESSION['nom']) ? $_SESSION['nom'] : null;
 $prenom = isset($_SESSION['prenom']) ? $_SESSION['prenom'] : null;

@@ -1,3 +1,7 @@
+<?php
+require_once '../../includes/auth.inc.php';
+requireRole('admin');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

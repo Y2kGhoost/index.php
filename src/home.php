@@ -7,7 +7,7 @@ require_once "./includes/dbh.inc.php";
 require_once "./includes/auth.inc.php";
 
 // Check if user is authenticated admin before proceeding
-requireAdmin();
+requireRole('admin');
 
 // Only proceed to load the page content if the auth check passes
 try {
