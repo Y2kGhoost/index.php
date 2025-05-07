@@ -4,35 +4,34 @@ function requireRole($requiredRole) {
         session_start();
     }
 
-    // Only check if user is logged in and has the correct role
+    // Check if user is logged in
     if (!isset($_SESSION['user_id'], $_SESSION['role'])) {
-        header("Location: ../login.php?error=not_logged_in");
-        exit();
+        redirectToLogin("not_logged_in");
     }
 
-    $possiblePaths = [
-        './HTML/login.php',
-        '../HTML/login.php',
-        '../../HTML/login.php',
-    ];
-    
-    $found = false;
-    
-    foreach ($possiblePaths as $path) {
-        if (file_exists($path)) {
-            header("Location: $path?error=not_logged_in");
-            $found = true;
-            break;
-        }
-    }
-    
-    if (!$found) {
-        // fallback path if no login.php was found
-        echo "Page de login introuvable.";
-        exit();
+    // Check if user has the required role
+    if ($_SESSION['role'] !== $requiredRole) {
+        redirectToLogin("insufficient_permissions");
     }
 
     // Update activity timestamp
     $_SESSION['last_activity'] = time();
 }
 
+function redirectToLogin($errorReason) {
+    $possiblePaths = [
+        './HTML/login.php',
+        '../HTML/login.php',
+        '../../HTML/login.php',
+    ];
+
+    foreach ($possiblePaths as $path) {
+        if (file_exists($path)) {
+            header("Location: $path?error=$errorReason");
+            exit();
+        }
+    }
+
+    echo "Page de login introuvable.";
+    exit();
+}

@@ -1,5 +1,7 @@
 CREATE DATABASE db;
 
+USE db;
+
 CREATE TABLE filieres (
     id_filiere INT AUTO_INCREMENT PRIMARY KEY,
     nom_filiere VARCHAR(100) NOT NULL
