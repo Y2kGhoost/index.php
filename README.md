@@ -90,4 +90,4 @@ index.php/<br>
 ---
 ## 📄 Licence
 Projet libre à usage éducatif.
-De Ilyass Gueddari GitHub: [Y2kGhoost](https://github.com/Y2kGhoost) | Zineb Dahbi | Hiba Harbal
+De Ilyass Gueddari GitHub: [Y2kGhoost](https://github.com/Y2kGhoost) | Zineb Eddehbi | Hiba Harbal
