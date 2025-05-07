@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de PDF - Mini Projet PHP MySQL</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        #controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #161b22;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            border: 1px solid #30363d;
+        }
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            font-family: inherit;
+        }
+        button:hover {
+            background-color: #2ea043;
+        }
+        .markdown-body {
+            background-color: #0d1117;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid #30363d;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            border: 1px solid #30363d;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #30363d;
+        }
+        th {
+            background-color: #161b22;
+            color: #58a6ff;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #161b22;
+        }
+        tr:hover {
+            background-color: #1f2937;
+        }
+        pre {
+            background-color: #161b22 !important;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            border: 1px solid #30363d;
+            margin: 20px 0;
+        }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 85%;
+            background-color: rgba(110, 118, 129, 0.4);
+            border-radius: 3px;
+            padding: 2px 4px;
+        }
+        h1 {
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 0.3em;
+            color: #58a6ff;
+        }
+        h2 {
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 0.3em;
+            margin-top: 24px;
+            color: #58a6ff;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+        blockquote {
+            border-left: 4px solid #30363d;
+            color: #8b949e;
+            padding: 0 1em;
+            margin: 20px 0;
+        }
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .markdown-body .highlight pre, .markdown-body pre {
+            background-color: #161b22;
+        }
+    </style>
+</head>
+<body>
+    <div id="content" class="markdown-body">
+        <!-- Le contenu markdown sera rendu ici -->
+    </div>
+
+    <script>
+        // Le contenu Markdown du README amélioré
+        const markdownContent = `# Mini Projet PHP MySQL : Gestion des Évaluations
+
+
+## Présentation du projet
+
+Ce projet a pour objectif de développer une application web permettant de gérer les évaluations (examens, tests, notes, etc.) des utilisateurs (étudiants, enseignants) à travers une interface simple et intuitive. Il utilise PHP côté serveur et MySQL pour la gestion de la base de données.
+
+## Technologies utilisées
+
+- **Frontend**: HTML, Tailwind CSS
+- **Backend**: PHP
+- **Base de données**: MySQL
+- **Autres**: TypeScript (Dark Mode + jsPDF)
+
+## Contenu du livrable
+
+| Élément | Statut | Description |
+|---------|--------|-------------|
+| **Code source** | ✅ | Application complète (HTML/PHP, Tailwind CSS, TypeScript, MySQL) |
+| **Script BDD** | ✅ | Fichier SQL d'initialisation de la base de données |
+| **Documentation** | ✅ | Guide d'installation et d'utilisation |
+| **Manuel technique** | ⚙️ | (Facultatif) Structure, choix techniques, schémas BDD |
+
+## Structure du projet
+
+\`\`\`plaintext
+index.php/
+├── node_modules/       # Dépendances (Tailwind CSS, jsPDF)
+├── src/
+│   ├── assets/         # Images, logos
+│   ├── css/            # Fichiers CSS (via Tailwind)
+│   ├── html/           # Pages HTML/PHP
+│   ├── includes/       # Connexion et gestion BDD (PHP)
+│   ├── script/         # Dark Mode et export PDF (JS/TS)
+│   └── sql/            # Script SQL de création de BDD
+├── .gitignore          # Exclusions Git
+├── package.json        # Dépendances & scripts
+├── package-lock.json   # Verrou des dépendances
+├── tailwind.config.js  # Config Tailwind CSS
+└── tailwindcss.sh      # Script de build CSS
+\`\`\`
+
+## Rapport Technique
+
+### Choix techniques
+
+- **Frontend**: HTML + Tailwind CSS pour un design réactif et épuré
+- **Backend**: PHP pour la logique métier, traitement des formulaires et requêtes SQL
+- **Base de données**: MySQL pour stocker les utilisateurs, évaluations et résultats
+- **JavaScript/TypeScript**:
+  - Mode sombre dynamique
+  - Génération de rapports PDF via jsPDF
+
+### Fonctionnalités principales
+
+- Authentification des utilisateurs (enseignants/étudiants)
+- Gestion des évaluations (CRUD)
+- Saisie et visualisation des résultats
+- Exportation en PDF des relevés de notes
+- Interface responsive avec mode sombre
+
+## Documentation utilisateur
+
+### Installation
+
+1. **Cloner le dépôt**:
+   \`\`\`bash
+   # Windows:
+   git clone https://github.com/Y2kGhoost/index.php.git C:\\xampp\\htdocs\\VOTRE_DIR
+   
+   # Linux:
+   git clone https://github.com/Y2kGhoost/index.php.git /opt/lampp/htdocs/VOTRE_DIR
+   cd /opt/lampp/htdocs/VOTRE_DIR
+   \`\`\`
+
+2. **Installer les dépendances**:
+   \`\`\`bash
+   npm install  # OBLIGATOIRE DE NODE.JS
+   ./tailwindcss.sh
+   \`\`\`
+
+3. **Configurer la base de données**:
+   - Importer le fichier \`src/SQL/DataBaseQuery.sql\` dans votre serveur MySQL
+   - Modifier les informations de connexion dans \`src/includes/dbh.inc.php\`
+
+## Licence
+
+Projet libre à usage éducatif.
+
+## Auteurs
+
+- **Ilyass Gueddari** - [Y2kGhoost](https://github.com/Y2kGhoost)
+- **Zineb Dahbi**
+- **Hiba Harbal**`;
+
+        // Rendu du Markdown en HTML
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = marked.parse(markdownContent);
+            
+            // Activer la coloration syntaxique
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+        });
+
+        // Configuration et téléchargement du PDF
+        document.getElementById('downloadPDF').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const contentDiv = document.getElementById('content');
+            
+            // Afficher un message de chargement
+            const loadingMessage = document.createElement('div');
+            loadingMessage.textContent = 'Génération du PDF en cours...';
+            loadingMessage.style.position = 'fixed';
+            loadingMessage.style.top = '50%';
+            loadingMessage.style.left = '50%';
+            loadingMessage.style.transform = 'translate(-50%, -50%)';
+            loadingMessage.style.padding = '15px 20px';
+            loadingMessage.style.backgroundColor = 'rgba(0,0,0,0.7)';
+            loadingMessage.style.color = 'white';
+            loadingMessage.style.borderRadius = '5px';
+            loadingMessage.style.zIndex = '1000';
+            document.body.appendChild(loadingMessage);
+            
+            // Attendre un peu pour que le message s'affiche
+            setTimeout(() => {
+                // Créer le PDF avec une meilleure résolution
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'pt',
+                    format: 'a4',
+                    hotfixes: ["px_scaling"]
+                });
+                
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const margin = 40;
+                const contentWidth = pageWidth - (margin * 2);
+                
+                // Options pour html2canvas avec une meilleure qualité
+                const options = {
+                    scale: 3, // Augmenter la qualité
+                    useCORS: true,
+                    logging: false,
+                    backgroundColor: '#0d1117',
+                    windowWidth: 800,
+                    allowTaint: true
+                };
+                
+                html2canvas(contentDiv, options).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png', 1.0);
+                    const imgWidth = contentWidth;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    
+                    let heightLeft = imgHeight;
+                    let position = margin;
+                    let pageCount = 1;
+                    
+                    // Première page
+                    pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+                    heightLeft -= (pageHeight - (margin * 2));
+                    
+                    // Pages supplémentaires si nécessaire
+                    while (heightLeft > 0) {
+                        position = heightLeft - imgHeight;
+                        pdf.addPage();
+                        pageCount++;
+                        pdf.addImage(imgData, 'PNG', margin, -position, imgWidth, imgHeight);
+                        heightLeft -= (pageHeight - (margin * 2));
+                    }
+                    
+                    // Ajouter les en-têtes et pieds de page
+                    const totalPages = pdf.internal.getNumberOfPages();
+                    
+                    for (let i = 1; i <= totalPages; i++) {
+                        pdf.setPage(i);
+                        pdf.setFontSize(10);
+                        pdf.setTextColor(150, 150, 150);
+                        
+                        // En-tête
+                        if (i > 1) {
+                            pdf.text('Mini Projet PHP MySQL : Gestion des Évaluations', margin, 20);
+                        }
+                        
+                        // Pied de page
+                        pdf.text(
+                            `Page ${i} sur ${totalPages}`,
+                            pageWidth - margin - 70,
+                            pageHeight - 20
+                        );
+                        
+                        // Ligne de séparation
+                        pdf.setDrawColor(50, 50, 50);
+                        pdf.line(
+                            margin,
+                            pageHeight - 30,
+                            pageWidth - margin,
+                            pageHeight - 30
+                        );
+                    }
+                    
+                    // Télécharger le PDF
+                    pdf.save('mini-projet-php-mysql.pdf');
+                    
+                    // Supprimer le message de chargement
+                    document.body.removeChild(loadingMessage);
+                }).catch(error => {
+                    console.error('Error generating PDF:', error);
+                    document.body.removeChild(loadingMessage);
+                    alert('Une erreur est survenue lors de la génération du PDF');
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
