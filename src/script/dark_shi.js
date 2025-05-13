@@ -28,8 +28,8 @@ var DarkModeToggle = /** @class */ (function () {
     };
     DarkModeToggle.prototype.updateButtonIcon = function (theme) {
         this.toggleButton.innerHTML = theme === 'dark'
-            ? '<i class="fas fa-sun mr-2"></i>NOT WORKING'
-            : '<i class="fas fa-moon mr-2"></i>NOT WORKING';
+            ? '<i class="fas fa-sun mr-2"></i>Light Mode'
+            : '<i class="fas fa-moon mr-2"></i>Dark Mode';
     };
     DarkModeToggle.prototype.init = function () {
         var _this = this;

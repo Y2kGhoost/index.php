@@ -11,7 +11,8 @@ CREATE TABLE enseignants (
     id_enseignant INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL
+    email VARCHAR(150) NOT NULL,
+    user_id INT NOT NULL
 );
 
 CREATE TABLE etudiants (
@@ -20,7 +21,8 @@ CREATE TABLE etudiants (
     prenom VARCHAR(100) NOT NULL,
     date_naissance DATE NOT NULL,
     id_filiere INT,
-    FOREIGN KEY (id_filiere) REFERENCES filieres(id_filiere)
+    FOREIGN KEY (id_filiere) REFERENCES filieres(id_filiere),
+    user_id INT NOT NULL
 );
 
 CREATE TABLE matieres (

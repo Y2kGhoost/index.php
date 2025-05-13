@@ -90,7 +90,7 @@ try {
                 <button id="dark-mode-toggle" class="text-white px-4 py-2 hover:bg-gray-700 transition-colors whitespace-nowrap">
                     <i class="fas fa-moon mr-2"></i>Mode Sombre
                 </button>
-                <a href="./logout.php" class="text-white px-4 py-2 bg-red-600 hover:bg-red-700 transition-colors whitespace-nowrap">
+                <a href="./HTML/login.php" class="text-white px-4 py-2 bg-red-600 hover:bg-red-700 transition-colors whitespace-nowrap">
                     <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
                 </a>
             </div>
@@ -245,12 +245,5 @@ try {
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-sm">
-                &copy; <?php echo date('Y'); ?> Système de Gestion Scolaire. Tous droits réservés.
-            </p>
-        </div>
-    </footer>
 </body>
 </html>

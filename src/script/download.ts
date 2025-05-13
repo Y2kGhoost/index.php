@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", (): void => {
         const prenom = container.dataset.prenom || "PRENOM";
         const naissance = container.dataset.dateNaissance || "";
         const username = container.dataset.username || "etudiant";
-        const classe = container.dataset.classe || "Filière non spécifiée";
         
         // Create document with better margins
         const doc = new jsPDF({
@@ -220,9 +219,6 @@ document.addEventListener("DOMContentLoaded", (): void => {
         doc.text(`Né(e) le : ${formattedDate}`, margin + 60, y);
         y += lineHeight + 2;
         
-        doc.text(`Filière : ${classe}`, margin + 55, y);
-        y += paragraphSpacing + 10;
-        
         // Second paragraph
         doc.text("est régulièrement inscrit(e) en qualité d'étudiant(e) dans notre établissement", margin + 4, y);
         y += lineHeight;
@@ -299,7 +295,7 @@ document.addEventListener("DOMContentLoaded", (): void => {
         doc.setTextColor(220, 230, 255);
         doc.setGState(new doc.GState({ opacity: 0.06 }));
         doc.text(
-          "EST SAFI", 
+          "EST SALE", 
           pageWidth / 2, 
           pageHeight / 2, 
           { 

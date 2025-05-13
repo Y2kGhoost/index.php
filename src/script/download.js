@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
             var prenom = container.dataset.prenom || "PRENOM";
             var naissance = container.dataset.dateNaissance || "";
             var username = container.dataset.username || "etudiant";
-            var classe = container.dataset.classe || "Filière non spécifiée";
             // Create document with better margins
             var doc_1 = new jsPDF({
                 orientation: "portrait",
@@ -164,8 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
             doc_1.setFont("helvetica", "normal");
             doc_1.text("N\u00E9(e) le : ".concat(formattedDate), margin + 60, y);
             y += lineHeight + 2;
-            doc_1.text("Fili\u00E8re : ".concat(classe), margin + 55, y);
-            y += paragraphSpacing + 10;
             // Second paragraph
             doc_1.text("est régulièrement inscrit(e) en qualité d'étudiant(e) dans notre établissement", margin + 4, y);
             y += lineHeight;
@@ -219,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
             doc_1.setFontSize(70);
             doc_1.setTextColor(220, 230, 255);
             doc_1.setGState(new doc_1.GState({ opacity: 0.06 }));
-            doc_1.text("EST SAFI", pageWidth_1 / 2, pageHeight / 2, {
+            doc_1.text("EST SALE", pageWidth_1 / 2, pageHeight / 2, {
                 align: "center",
                 angle: 45
             });
