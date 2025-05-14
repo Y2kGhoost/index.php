@@ -63,13 +63,13 @@ requireRole('admin');
     <!-- Tertiary Navigation -->
     <nav class="bg-gray-600 shadow-sm">
         <div class="container mx-auto flex overflow-x-auto">
-            <a href="./Modifier/nom_mat.php" class="text-white px-6 py-4 hover:bg-gray-500 transition-colors whitespace-nowrap">
+            <a href="../Matieres/Modifier/nom_mat.php" class="text-white px-6 py-4 hover:bg-gray-500 transition-colors whitespace-nowrap">
                 <i class="fas fa-signature mr-2"></i>Nom
             </a>
-            <a href="./Modifier/fil_mat.php" class="text-white px-6 py-4 hover:bg-gray-500 transition-colors whitespace-nowrap">
+            <a href="../Matieres/Modifier/fil_mat.php" class="text-white px-6 py-4 hover:bg-gray-500 transition-colors whitespace-nowrap">
                 <i class="fas fa-graduation-cap mr-2"></i>Filière
             </a>
-            <a href="./Modifier/ens_mat.php" class="text-white px-6 py-4 hover:bg-gray-500 transition-colors whitespace-nowrap">
+            <a href="../Matieres/Modifier/ens_mat.php" class="text-white px-6 py-4 hover:bg-gray-500 transition-colors whitespace-nowrap">
                 <i class="fas fa-chalkboard-teacher mr-2"></i>Enseignant
             </a>
         </div>

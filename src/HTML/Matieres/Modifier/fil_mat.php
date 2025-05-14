@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../includes/auth.inc.php';
+require_once '../../../includes/auth.inc.php';
 requireRole('admin');
 
 $id_mat = $_SESSION['id_mat'] ?? null;
@@ -61,6 +61,9 @@ unset($_SESSION['id_mat'], $_SESSION['newFilId'], $_SESSION['error']);
             </a>
             <a href="../suprimematie.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
                 <i class="fas fa-trash-alt mr-2"></i>Supprimer
+            </a>
+            <a href="../liste_mat.php" class="text-white px-6 py-4 hover:bg-gray-600 transition-colors whitespace-nowrap">
+                <i class="fas fa-book mr-2"></i>Lister matiere
             </a>
         </div>
     </nav>
