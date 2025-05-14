@@ -205,10 +205,10 @@ document.addEventListener("DOMContentLoaded", (): void => {
         
         // Create a light highlight box for student info
         doc.setFillColor(240, 249, 255); // Very light blue
-        doc.roundedRect(margin, y - 5, contentWidth, 30, 2, 2, 'F');
+        doc.roundedRect(margin, y - 5, contentWidth, 20, 2, 2, 'F');
         doc.setDrawColor(...primaryColor);
-        doc.setLineWidth(0.3);
-        doc.roundedRect(margin, y - 5, contentWidth, 30, 2, 2, 'S');
+        doc.setLineWidth(0.4);
+        doc.roundedRect(margin, y - 5, contentWidth, 20, 2, 2, 'S');
         
         // Student info
         doc.setFont("helvetica", "bold");
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", (): void => {
         
         doc.setFont("helvetica", "normal");
         doc.text(`Né(e) le : ${formattedDate}`, margin + 60, y);
-        y += lineHeight + 2;
+        y += lineHeight + 15;
         
         // Second paragraph
         doc.text("est régulièrement inscrit(e) en qualité d'étudiant(e) dans notre établissement", margin + 4, y);

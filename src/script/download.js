@@ -152,17 +152,17 @@ document.addEventListener("DOMContentLoaded", function () {
             y += paragraphSpacing;
             // Create a light highlight box for student info
             doc_1.setFillColor(240, 249, 255); // Very light blue
-            doc_1.roundedRect(margin, y - 5, contentWidth, 30, 2, 2, 'F');
+            doc_1.roundedRect(margin, y - 5, contentWidth, 20, 2, 2, 'F');
             doc_1.setDrawColor.apply(doc_1, primaryColor);
-            doc_1.setLineWidth(0.3);
-            doc_1.roundedRect(margin, y - 5, contentWidth, 30, 2, 2, 'S');
+            doc_1.setLineWidth(0.4);
+            doc_1.roundedRect(margin, y - 5, contentWidth, 20, 2, 2, 'S');
             // Student info
             doc_1.setFont("helvetica", "bold");
             doc_1.text("L'\u00E9tudiant(e) : ".concat(fullName), margin + 80, y, { align: "center" });
             y += lineHeight + 2;
             doc_1.setFont("helvetica", "normal");
             doc_1.text("N\u00E9(e) le : ".concat(formattedDate), margin + 60, y);
-            y += lineHeight + 2;
+            y += lineHeight + 15;
             // Second paragraph
             doc_1.text("est régulièrement inscrit(e) en qualité d'étudiant(e) dans notre établissement", margin + 4, y);
             y += lineHeight;
